@@ -23,3 +23,8 @@ npm run dev
 
 [MIT](http://opensource.org/licenses/MIT)
 
+## 特色功能
+
+1 多用户系统
+2 支持在线撰写文章、查看草稿、文章实时保存
+3 UI漂亮（自己强行加上去的..）

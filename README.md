@@ -17,6 +17,9 @@ npm install
 npm run dev
 ```
 
+## 目前仍在开发中 需要搭配后端api服务器使用
+
+api服务器地址https://github.com/ZinCode/vue-ssr-blog-api
 
 
 ## License

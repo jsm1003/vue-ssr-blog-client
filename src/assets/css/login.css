@@ -1,0 +1,28 @@
+body {
+    color: #555;
+    font-size: 15px;
+    line-height: 1.7;
+    font-family: 'Helvetica Neue',Helvetica,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',Arial,sans-serif;
+    background: #f7fafc;
+    -webkit-font-smoothing: subpixel-antialiased;
+    margin:0;
+    padding: 0;
+}
+html body {
+    height: 100%;
+}
+
+/*#app {
+    z-index: 50;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}*/
+
+#Mycanvas {
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;   
+}

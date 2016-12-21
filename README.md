@@ -21,6 +21,18 @@ npm run dev
 
 api服务器地址https://github.com/ZinCode/vue-ssr-blog-api
 
+## 用到的一些技术栈
+
+### 前端
+1. vue2.1的ssr(前后端同构，对SEO友好)
+2. ES6语法，使用async/await编写异步代码
+3. webpack配置开发环境
+4. css使用flex响应式布局，（这一块还没有完成）
+
+### 后端
+1. 使用express框架
+2. 编写restful风格的api接口
+3. 使用leancloud作为baas云存储服务（没有使用mongoDB的原因有很多，以后再说）
 
 ## License
 
@@ -29,5 +41,5 @@ api服务器地址https://github.com/ZinCode/vue-ssr-blog-api
 ## 特色功能
 
 1.  多用户系统
-2.  支持在线撰写文章、发布文章、查看草稿、草稿实时保存
-3.  UI漂亮（自己强行加上去的..）
+2.  支持在线撰写文章、发布文章、查看草稿、草稿实时保存（使用markdown语法编写文章，支持实时预览）
+3.  UI漂亮（自己强行加上去的..，借鉴G+的UI风格）

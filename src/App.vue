@@ -23,17 +23,6 @@ NProgress.configure({
 //   ease: 'ease', 
    speed: 500
  })
-//  function updateLogin (e) {
-//       console.log(e.target)
-//       if(e.key === 'testIsLogin') {
-//         if(e.newValue === 'yes') {
-//           alert('haha')
-//           console.log('登陆状态')
-//         } else if (e.newValue === 'no') {
-//           console.log('退出状态')
-//         }
-//       } 
-//     }
 export default {
   components: {
     navbar,

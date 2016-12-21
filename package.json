@@ -1,10 +1,10 @@
 {
   "name": "vue-ssr-material",
   "version": "0.0.0",
-  "description": "A Vue.js project wuth vue 2.0, vue-router and vuex for server side rendering.",
+  "description": "A Vue.js project with vue 2.0, vue-router and vuex for server side rendering.",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/doabit/vue-ssr-starter-kit.git"
+    "url": "git+https://github.com/ZinCode/vue-ssr-blog-client"
   },
   "keywords": [
     "vue",
@@ -18,9 +18,9 @@
   "author": "Josephine <838432498@qq.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/doabit/vue-ssr-starter-kit/issues"
+    "url": "https://github.com/ZinCode/vue-ssr-blog-client/issues"
   },
-  "homepage": "https://github.com/doabit/vue-ssr-starter-kit#readme",
+  "homepage": "https://github.com/ZinCode/vue-ssr-blog-client",
   "scripts": {
     "dev": "node server",
     "start": "cross-env NODE_ENV=production node server",

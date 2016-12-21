@@ -9,7 +9,7 @@
                 <!--<div class="searchinfo">-->
                 <div class="title">
                     <div class="logoName">
-                        <router-link to="/articles">Sherlock</router-link>
+                        <router-link to="/articles">Josephine</router-link>
                     </div>
                     <!--如果写成a标签他会刷新一遍？-->
                     <div class="pageTitle">Home</div>

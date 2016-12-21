@@ -8,16 +8,15 @@
             </div>
             <div class="list">
                 <div class="links">
-            <router-link class="link" to="{name: 'as'}"><i class="material-icons icon">home</i>Articles</router-link>
-            <router-link class="link" to="{name: 'ts'}"><i class="material-icons icon">apps</i>Tags</router-link>
-            <router-link v-if="login" class="link" to="'/u/' + 345"><i class="material-icons icon">account_circle</i>Profile</router-link>
-            <router-link class="link" to="{name: 'aa'}"><i class="material-icons icon">headset</i>About</router-link>
-            <router-link class="link" to="{name: 'ds'}"><i class="material-icons icon">drafts</i>Draft</router-link>
+                    <router-link class="link" to="{name: 'as'}"><i class="material-icons icon">home</i>Articles</router-link>
+                    <router-link class="link" to="{name: 'ts'}"><i class="material-icons icon">apps</i>Tags</router-link>
+                    <router-link v-if="login" class="link" to="'/u/' + 345"><i class="material-icons icon">account_circle</i>Profile</router-link>
+                    <router-link class="link" to="{name: 'aa'}"><i class="material-icons icon">headset</i>About</router-link>
                 </div>
             </div>
             <div class="copyRight">
                 <div>博客源码</div>
-                <div>©2016 Josephine</div>
+                <div>©2017 Josephine</div>
                 <!--这个时间要改一改-->
             </div>
         </div>

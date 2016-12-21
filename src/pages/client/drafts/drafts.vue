@@ -4,25 +4,14 @@
       <h2 class="item-title">
         <router-link :to="'/aaa/a/' + item.objectId ">{{ item.title }}</router-link>
         </h2>
-      <div class="item-people">
-        <div class="answer-meta">
-          <div class="author-info">
-            <img class="author-img" src="assets/img/auth.png"></img>
-            <div class="author-content">
-              <div class="author-name">萌新</div>
-              <div class="author-badge">前端开发</div>
-            </div>
-          </div>
-        </div>
-      </div>
       <div class="item-content">
-        <span class="RichText">{{ item.content }}一大堆blabla一大堆blabla一大堆blabla一大堆blabla一大堆blabla一大堆blabla一大堆blabla</span>
-         <router-link class="readmore" :to="'/aaa/w/' + item.objectId ">...编辑</router-link>
+        <span class="RichText">{{ item.content }}</span>
+         <router-link class="readmore" :to="'/d/' + item.objectId ">...编辑</router-link>
       </div>
     </div>
      <div class="more-item">
-      <a v-if="haveNext" @click="loadMore()" href="javascript:;">more</a>
-      <span v-else>all above</span>
+      <a v-if="haveNext" @click="loadMore()" href="javascript:;">I need more</a>
+      <span v-else>没有更多草稿了..</span>
     </div>
   </div>
 </template>
@@ -134,8 +123,8 @@ import api from 'src/api'
   }
   .more-item {
     width: 100%;
-    font-size: 20px;
-    color: #0f88eb;
+    font-size: 14px;
+    color: #9e9e9e;
   }
   
   /*果然是，后写的会把先写的顶替掉*/

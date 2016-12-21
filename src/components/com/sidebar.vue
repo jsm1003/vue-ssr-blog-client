@@ -7,7 +7,6 @@
             <router-link v-if="login" class="item" :to="{name: 'u'}"><i class="material-icons icon">account_circle</i>Profile</router-link>
             <router-link class="item" :to="{name: 'up'}"><i class="material-icons icon">people</i>People</router-link>
             <router-link class="item" :to="{name: 'aa'}"><i class="material-icons icon">headset</i>About</router-link>
-            <router-link class="item" :to="{name: 'ds'}"><i class="material-icons icon">drafts</i>Draft</router-link>
         </div>
         <div class="copyRight">
             <div><a class="source" href="https://github.com/ZinCode">博客源码</a></div>

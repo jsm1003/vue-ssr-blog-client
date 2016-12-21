@@ -42,6 +42,10 @@ api服务器地址https://github.com/ZinCode/vue-ssr-blog-api
 2.  支持在线撰写文章、发布文章、查看草稿、草稿实时保存（使用markdown语法编写文章，支持实时预览）
 3.  UI漂亮（自己强行加上去的..，借鉴G+的UI风格）
 
+#### 博客使用说明
+
+目前在攥写或发布文章的时候还没有提示，请按F12打开console控制台，在哪里可以看到各种提示信息
+
 ## License
 
 [MIT](http://opensource.org/licenses/MIT)

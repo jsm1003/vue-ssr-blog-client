@@ -40,7 +40,7 @@ if (isProd) {
   })
 }
 
-function createRenderer (bundle) {
+function createRenderer(bundle) {
   // https://github.com/vuejs/vue/blob/next/packages/vue-server-renderer/README.md#why-use-bundlerenderer
   return require('vue-server-renderer').createBundleRenderer(bundle, {
     cache: require('lru-cache')({
@@ -50,7 +50,7 @@ function createRenderer (bundle) {
   })
 }
 
-function parseIndex (template) {
+function parseIndex(template) {
   const contentMarker = '<!-- APP -->'
   const i = template.indexOf(contentMarker)
   return {
@@ -70,23 +70,23 @@ app.use(compression({ threshold: 0 }))
 app.use(favicon('./public/logo-48.png'))
 //添加图标中间件
 
- app.set('views', path.join(__dirname, 'dist'))
- app.engine('.html', require('ejs').__express)
- app.set('view engine', 'ejs')
+app.set('views', path.join(__dirname, 'dist'))
+app.engine('.html', require('ejs').__express)
+app.set('view engine', 'ejs')
 //上面这些暂时先复制过来，具体怎么用还不知道
 
 // app.use('/service-worker.js', serve('./dist/server/service-worker.js'))
 app.use('/manifest.json', serve('./manifest.json'))
- app.use('/server', serve('./dist/server'))
- app.use('/static', serve('./dist/static'))
- //app.use('/public', serve('./public'))
+app.use('/server', serve('./dist/server'))
+app.use('/static', serve('./dist/static'))
+//app.use('/public', serve('./public'))
 // 处理静态资源和入口文件 先这么理解
 
 
 
 
 //从这里往下都是一样的
-app.get(['/','/articles','/a/:id','/a/:id/edit/', '/u/haha','/u/:id/articles','/people','/drafts', '/write', '/d/:id','/tags','/t/:id','/about/author', '/about/resume', '/s'], (req, res) => {
+app.get(['/', '/articles', '/a/:id', '/a/:id/edit/', '/u/haha', '/u/:id/articles', '/people', '/drafts', '/write', '/d/:id', '/tags', '/t/:id', '/about/author', '/about/resume', '/s'], (req, res) => {
   //等路由确定了这里的渲染部分要改一下'
   if (!renderer) {
     return res.end('waiting for compilation... refresh in a moment.')
@@ -110,7 +110,7 @@ app.get(['/','/articles','/a/:id','/a/:id/edit/', '/u/haha','/u/:id/articles','/
     if (context.initialState) {
       res.write(
         `<script>window.__INITIAL_STATE__=${
-          serialize(context.initialState, { isJSON: true })
+        serialize(context.initialState, { isJSON: true })
         }</script>`
       )
     }
@@ -134,28 +134,28 @@ app.get(['/','/articles','/a/:id','/a/:id/edit/', '/u/haha','/u/:id/articles','/
 // })
 //spa管理页面'
 app.get(['/admin', '/admin/*'], (req, res) => {
-  if(isProd) {
+  if (isProd) {
     res.render('admin.html')
   } else {
     res.send(adminHTML)
   }
-    
+
 })
 
 //spa登陆页面
 app.get(['/signin', '/signup'], (req, res) => {
-  if(isProd) {
+  if (isProd) {
     res.render('login.html')
   } else {
     res.send(loginHTML)
   }
-    
+
 })
 
 //是否考虑弄一个spa后台管理页面
 
 //其他路由404
-app.get('*',(req,res) => {
+app.get('*', (req, res) => {
   //这里应该单独弄一个404页面
   //res.render('404.html')
   res.send('HTTP STATUS: 404')

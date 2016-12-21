@@ -30,7 +30,7 @@ const config = merge(base, {
 
 if (process.env.NODE_ENV === 'production') {
   config.plugins.push(
-    new ExtractTextPlugin('static/css/styles.[hash].css'),
+    new ExtractTextPlugin('static/css/[name].[hash].css'),
     //就可以将你的样式提取到单独的css文件里
     // this is needed in webpack 2 for minifying CSS
     new webpack.LoaderOptionsPlugin({

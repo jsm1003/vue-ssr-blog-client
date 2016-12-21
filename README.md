@@ -16,6 +16,9 @@ npm start
 npm install
 npm run dev
 ```
+## 遇到问题？ 
+
+ 请提交[issue](https://github.com/ZinCode/vue-ssr-blog-client/issues) 或者在gitter聊天室找我[https://gitter.im/josephine-blog/josephine-blog](https://gitter.im/josephine-blog/josephine-blog)
 
 ## 目前仍在开发中 需要搭配后端api服务器使用（开发完成会合并两个服务器）
 

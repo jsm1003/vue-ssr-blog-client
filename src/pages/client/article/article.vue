@@ -9,7 +9,7 @@
       <time class="time">3个月前</time>
     </div>
     <section class="article" v-html="article.content"></section>
-      <router-link class="float" :to="{name: 'newDraft'}" title="撰写新文章">
+      <router-link v-if="logState" class="float" :to="{name: 'newDraft'}" title="撰写新文章">
         <i class="material-icons edit">mode_edit</i>
       </router-link>
   </div>
@@ -27,6 +27,7 @@ export default {
   computed: {
     ...mapGetters({
       article: 'getArticle',
+      logState: 'getLogState'
     })
   },
   preFetch: fetchArticleData,

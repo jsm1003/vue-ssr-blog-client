@@ -20,7 +20,7 @@ npm run dev
 
  请提交[issue](https://github.com/ZinCode/vue-ssr-blog-client/issues) 或者在gitter聊天室找我[https://gitter.im/josephine-blog/Lobby](https://gitter.im/josephine-blog/Lobby)
 
-## 目前仍在开发中 需要搭配后端api服务器使用（开发完成会合并两个服务器）
+## 目前仍在开发中（算是基本完成了一个总体的思路吧，后面要改的还有很多） 需要搭配后端api服务器使用
 
 请最好使用node7.0以上的版本，并在最新的chrome浏览器中预览（该项目开发环境为node7.2, chrome55）
 目前该项目对老版本浏览器的兼容性还没有做好

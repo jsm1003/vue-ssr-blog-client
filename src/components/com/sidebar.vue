@@ -9,7 +9,7 @@
             <router-link class="item" :to="{name: 'aa'}"><i class="material-icons icon">headset</i>About</router-link>
         </div>
         <div class="copyRight">
-            <div><a class="source" href="https://github.com/ZinCode">博客源码</a></div>
+            <div><a class="source" href="https://github.com/ZinCode/vue-ssr-blog-client" target="blank">博客源码</a></div>
             <div>©2017 Josephine</div>
             <!--copyright可以弄成一个组件的形式？-->
             <!--这个时间要改一改-->

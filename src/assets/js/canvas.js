@@ -4,12 +4,6 @@
 		var WIDTH = window.innerWidth
 		var	HEIGHT = window.innerHeight
 
-		// window.addEventListener('resize', () => {
-		// 	WIDTH = window.innerWidth
-		// 	HEIGHT = window.innerHeight
-		//真他妈恶心先不弄自适应了
-		// })
-
 		canvas.width = WIDTH
 		canvas.height = HEIGHT
 		var context = canvas.getContext('2d');
@@ -117,6 +111,6 @@
 					if (cir.y > HEIGHT) cir.y = 0;
 					else if (cir.y < 0) cir.y = HEIGHT;
 				}
-				draw();
-			}, 30); //他原来是10
+				draw()
+			}, 30)
 		}

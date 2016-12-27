@@ -33,7 +33,7 @@ const app = new Vue({
 // ，客户端检查到这个Flag就跳过Diff。
 
 
-//prefFetch 是暴露给路由预加载的钩子
+//preFetch 是暴露给路由预加载的钩子
 //组件定义一个 preFetch 的钩子函数，dispatch action 返回一个 promise。
 //promise resolve 之后更新 state。等所有的 preFetch 钩子都 resolve 之后，
 //获取初始状态，渲染页面。
@@ -44,4 +44,9 @@ const app = new Vue({
 //有一点需要好好理解下：如果你是通过 URL 去服务器端获取页面，
 //比如首页，那么才会调用 preFetch获取数据，也就是服务器端渲染。
 //而浏览器端的路由跳转，则是直接在前端去发请求获取数据。关于这点，可以看下面尤大大在知乎上给我的回复。
+console.log(`%c I shall be telling this with a sigh
+Somewhere ages and ages hence:
+Two roads diverged in a wood, and I--
+I took the one less traveled by,
+And that has made all the difference. %c   --Robert Frost <The Road Not Taken> .`, "color:rgba(0,0,0,0.87);font-weight:400;font-size:20px;font-family:Century Gothic;letter-spacing: 0.2px;","color:#666;font-size:13px;font-family:Century Gothic;letter-spacing: 0.1px;")
 export { app, router, store }

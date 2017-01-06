@@ -7,7 +7,7 @@
       <div class="item-people">
         <div class="answer-meta">
           <div class="author-info">
-            <img class="author-img" src="../assets/img/auth.png"></img>
+            <img class="author-img" src="../assets/img/auth.jpg"></img>
             <div class="author-content">
               <div class="author-name">{{ item.authname }}</div>
               <div class="author-badge">前端开发</div>

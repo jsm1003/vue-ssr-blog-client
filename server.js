@@ -60,7 +60,7 @@ function parseIndex(template) {
 const serve = (path, cache) => express.static(resolve(path), {
   maxAge: cache && isProd ? 60 * 60 * 24 * 30 : 0
 })
-
+//app.use('/service-worker.js', serve('./dist/server/service-worker.js'))这一行到底干什么用的？删了也可以？
 app.use(compression({ threshold: 0 }))
 app.use(favicon('./src/assets/img/logo-48.png'))
 app.use('/manifest.json', serve('./manifest.json'))

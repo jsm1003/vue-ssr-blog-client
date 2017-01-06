@@ -29,6 +29,8 @@ var baseConfig = {
   output: {
     path: path.resolve(__dirname, '../dist'),
     publicPath: '/',
+     //output.publicPath 表示资源的发布地址，当配置过该属性后，打包文件中所以通过相对路径引用的资源都会被配置的路径所替换。
+    //如果你改成/assets/的话， 现在的所有资源的路径均为http://localhost:8080/assets/***
     filename: 'static/js/[name].[chunkhash:7].js'
   },
   module: {
@@ -47,7 +49,14 @@ var baseConfig = {
       {
         test: /\.json$/,
         loader: 'json-loader'
-      }
+      },
+        {
+            test: /\.(jpg|png|gif|eot|svg|ttf|woff|woff2)$/,
+            loader: 'url-loader',
+            options: {
+                name: '[name].[hash:7].[ext]'
+            }
+        }
     ]
   },
   plugins: [

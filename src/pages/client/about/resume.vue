@@ -3,7 +3,7 @@
     <div class="header">
       <div class="user">
         <div class="avatar">
-          <img class="avatar-p" src="../../../assets/img/auth.png" alt="" />
+          <img class="avatar-p" src="../../../assets/img/auth.jpg" alt="" />
           <!--图片引用这里还是不爽啊-->
         </div>
         <div class="info">

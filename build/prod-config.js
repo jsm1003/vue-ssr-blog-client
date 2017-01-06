@@ -45,26 +45,26 @@ Object.keys(entries).forEach(function (entry) {
     ],
     filename: `${entry}.html`,
     template: `src/template/${entry}.html`,
-    inject: true
+    inject: true,
     //下面这些东西是什么？先不加呢
-    // minify: {
-    //     removeComments: true,
-    //     collapseWhitespace: true,
-    //     removeAttributeQuotes: true
-    // }
+    minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeAttributeQuotes: true
+    }
   }))
 })
 
 module.exports = {
-  module: {
-    rules: [{
-      test: /\.(png|jpg|gif|svg)$/,
-      loader: 'file-loader',
-      options: {
-        limit: 10000,
-        name: 'static/img/[name].[hash:7].[ext]'
-      }
-    }]
-  },
+  // module: {
+  //   rules: [{
+  //     test: /\.(png|jpg|gif|svg)$/,
+  //     loader: 'file-loader',
+  //     options: {
+  //       limit: 10000,
+  //       name: '[name].[hash:7].[ext]'
+  //     }
+  //   }]
+  // },
   plugins: plugins
 }

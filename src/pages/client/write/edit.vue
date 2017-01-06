@@ -19,11 +19,11 @@
 </template>
 <script>
 
-    import eTag from 'components/eTag'
-    import { markdown } from 'src/filters'
+    import eTag from '~components/eTag'
+    import { markdown } from '~src/filters'
     import {mapGetters} from 'vuex'
     import debounce from 'lodash/debounce'
-    import api from 'src/api'
+    import api from '~src/api'
     export default {
         //编辑这一块暂时先不弄preFetch呢，
         name: 'edit',

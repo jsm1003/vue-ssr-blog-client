@@ -4,17 +4,18 @@
     <sidebar></sidebar>
     <min-sidebar></min-sidebar>
     <contentbar></contentbar>
+    <drop-down></drop-down> 
   </div>
 </template>
 <script>
-//import ls from 'local-storage' //这个localstorage不行啊，先不用了擦
 import NProgress from 'nprogress'
 import throttle from 'lodash/throttle'
 import {mapGetters} from 'vuex'
-import navbar from './components/com/navbar'
-import sidebar from './components/com/sidebar'
-import minSidebar from './components/com/minSidebar'
-import contentbar from './components/com/contentbar'
+import navbar from '~components/com/navbar'
+import sidebar from '~components/com/sidebar'
+import minSidebar from '~components/com/minSidebar'
+import contentbar from '~components/com/contentbar'
+import dropDown from '~components/drop'
 
 NProgress.configure({ 
   showSpinner: false,
@@ -28,7 +29,8 @@ export default {
     navbar,
     sidebar,
     contentbar,
-    minSidebar
+    minSidebar,
+    dropDown
   },
   data () {
     return {
@@ -39,7 +41,7 @@ export default {
           side: 'side',
           gProgress: 'getProgress',
           gPS: 'getGPS',
-          dropshow: 'getDrop'
+          dropDown: 'getDrop'
      })
   },
   methods: {
@@ -59,12 +61,6 @@ export default {
         if(e.newValue === 'yes') {
           this.$store.dispatch('getUserData')
          }
-      } 
-    },
-    handleClick (e) {
-      if(this.dropshow) {
-        this.$store.dispatch('closeDrop')
-        e.preventDefault()
       } 
     }
   },
@@ -89,18 +85,17 @@ export default {
         window.addEventListener('storage', this.updateLogin)
         window.addEventListener('scroll', throttle(this.scroll, 1000,{trailing: false}))
         window.addEventListener('resize', throttle(this.resize, 800))
-        document.addEventListener('click', this.handleClick,{capture: true})//事件捕获阻止路由跳转
         //默认应该获取一下用户的头像等基本信息       
     }
   }
 }
 
 </script>
-<style src="assets/css/index.css"></style>
-<style src="assets/css/article.css"></style>
-<style src="assets/css/atom-onelight.css"></style>
-<style src="assets/css/arrow-circle.css"></style>
-<style src="assets/css/nprogress.css"></style>
+<style src="~assets/css/index.css"></style>
+<style src="~assets/css/article.css"></style>
+<style src="~assets/css/atom-onelight.css"></style>
+<style src="~assets/css/arrow-circle.css"></style>
+<style src="~assets/css/nprogress.css"></style>
 <style scoped>
       .fade-enter-active, .fade-leave-active {
         transition: all 1s ease;

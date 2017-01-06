@@ -4,7 +4,7 @@ import store from '../store'
 //axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
 const defaults = {
     baseURL: 'http://localhost:3000/api',
-    timeout: 3000,
+   // timeout: 3000,
     withCredentials: true,
     //上面那一行应该是因为跨域，所以必须添加，生产环境下应该删除
 }

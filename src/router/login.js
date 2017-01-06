@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import signin from 'client/login/signin'
-import signup from 'client/login/signup'
+import signin from '~client/login/signin'
+import signup from '~client/login/signup'
 
 Vue.use(VueRouter)
 

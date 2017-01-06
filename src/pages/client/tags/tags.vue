@@ -8,7 +8,7 @@
   </div>
 </template>
 <script>
-  import api from 'src/api'
+  import api from '~src/api'
   import { mapGetters } from 'vuex'
   const fetchTagsData = async (store) => {
         return store.dispatch('getAllTags')

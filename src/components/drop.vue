@@ -1,6 +1,6 @@
 <template>
-    <div v-if="show" class="list" :style="position">
-        <content v-for="item in data" @click="itemclick(item)">
+    <div v-clickoutside v-if= "dropDown.show" class="list" :style="dropDown.position">
+        <content v-for="item in dropDown.data" @click="itemclick(item)">
             <div class="inner">{{ item }}</div>
         </content>
     </div>
@@ -9,17 +9,17 @@
     import { mapGetters } from 'vuex'
     export default {
         name: 'drop',
-        props: ['data', 'position'],
         computed: {
             ...mapGetters({
-                show: 'getDrop'
+                dropDown: 'getDrop'
             })
         },
         methods: {
             itemclick(item) {
-                this.$emit('dropClick', item)
-                this.$store.dispatch('closeDrop')
-                // console.log(this.position)
+                this.$store.commit('UPDATE_DROP_ITEM',{
+                    id: this.dropDown.id,
+                    item: item
+                })
             }
         }
     }
@@ -33,6 +33,7 @@
         padding: 16px 0;
         position: absolute;
         box-shadow:  0 3px 10px rgba(0,0,0,.156863),0 3px 10px rgba(0,0,0,.227451);
+        z-index: 1000;
     }
     /*.live {
         transition: left .2s cubic-bezier(0.0,0.0,0.2,1),max-width .2s cubic-bezier(0.0,0.0,0.2,1),max-height .2s cubic-bezier(0.0,0.0,0.2,1),opacity .05s linear,top .2s cubic-bezier(0.0,0.0,0.2,1);

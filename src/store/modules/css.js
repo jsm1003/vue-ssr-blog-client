@@ -8,12 +8,13 @@ import {
     AUTO_CLOSE,
     AUTO_OPEN,
     MIN_SIDE,
-    OPEN_DROP,
-    CLOSE_DROP
+    CLOSE_DROP,
+    TOGGLE_DROP,
+    UPDATE_DROP_ITEM
 } from '../mutation-types'
 
 const state = {
-    gProgress:{
+    gProgress: {
         start: false,
         finish: false
     },
@@ -21,93 +22,104 @@ const state = {
     autoSide: true, //根据屏幕大小调节侧边栏显示状况
     handleSide: true,//true 表示侧边栏打开 false 表示侧边栏关闭
     minSide: false, //小屏的时候显示的侧边栏
-    dropShow: false//drop组件的显示状态
+    dropDown: { //总感觉这里的dropdown组件写的还是不行
+        data:[],
+        position:{},
+        show: false,
+        id:''
+    },
+    dropItem:{}
 }
 
 const actions = {
-    ['gStart'] ({commit}) {
+    ['gStart']({commit}) {
         commit(START_PROGRESS)
     },
-    ['gFinish'] ({commit}) {
+    ['gFinish']({commit}) {
         commit(FINISH_PROGRESS)
     },
-    ['gDone'] ({commit}) {
+    ['gDone']({commit}) {
         commit(DONE_PROGRESS)
     },
-    ['gHide'] ({commit}) {
-        commit (HIDE_PROGRESS)
+    ['gHide']({commit}) {
+        commit(HIDE_PROGRESS)
     },
-    ['gShow'] ({commit}) {
-        commit (SHOW_PROGRESS)
+    ['gShow']({commit}) {
+        commit(SHOW_PROGRESS)
     },
-    ['handleSide'] ({commit}) {
-        commit (HANDLE_SIDE)
+    ['handleSide']({commit}) {
+        commit(HANDLE_SIDE)
     },
-    ['autoClose'] ({commit}) {
-        commit (AUTO_CLOSE) 
+    ['autoClose']({commit}) {
+        commit(AUTO_CLOSE)
     },
-    ['autoOpen'] ({commit}) {
-        commit (AUTO_OPEN)
+    ['autoOpen']({commit}) {
+        commit(AUTO_OPEN)
     },
-    ['minSideClose'] ({commit}) {
-        commit (MIN_SIDE)
+    ['minSideClose']({commit}) {
+        commit(MIN_SIDE)
     },
-    ['openDrop'] ({commit}) {
-        commit (OPEN_DROP)
-    },
-    ['closeDrop'] ({commit}) {
-        commit (CLOSE_DROP)
-    }
 }
 
 const mutations = {
-    [START_PROGRESS] (state) {
+    [START_PROGRESS](state) {
         state.gProgress.start = true
     },
-    [FINISH_PROGRESS] (state) {
+    [FINISH_PROGRESS](state) {
         state.gProgress.finish = true
         state.gProgress.start = false
     },
-    [DONE_PROGRESS] (state) {
+    [DONE_PROGRESS](state) {
         state.gProgress.finish = false
     },
-    [HIDE_PROGRESS] (state) {
+    [HIDE_PROGRESS](state) {
         state.gProgressShow = false
     },
-    [SHOW_PROGRESS] (state) {
+    [SHOW_PROGRESS](state) {
         state.gProgressShow = true
     },
-    [HANDLE_SIDE] (state) {
-        if(!state.autoSide) {//就是因为这里，他才不能用css的media来设置
+    [HANDLE_SIDE](state) {
+        if (!state.autoSide) {//就是因为这里，他才不能用css的media来设置
             state.minSide = true
         }
         state.handleSide = !state.handleSide
     },
-    [AUTO_CLOSE] (state) {
-            state.autoSide = false
+    [AUTO_CLOSE](state) {
+        state.autoSide = false
     },
-    [AUTO_OPEN] (state) {
+    [AUTO_OPEN](state) {
         state.autoSide = true
     },
-    [MIN_SIDE] (state) {
+    [MIN_SIDE](state) {
         state.minSide = false
     },
-    [OPEN_DROP] (state) {
-        state.dropShow = true
+    [CLOSE_DROP](state) {
+        state.dropDown.show = false
     },
-    [CLOSE_DROP] (state) {
-        state.dropShow = false
+    [TOGGLE_DROP] (state, {el, data}) {
+        const rect = el.getBoundingClientRect()
+        state.dropDown.data = data
+        state.dropDown.position = {
+            top: rect.top + rect.height + 'px',
+            left: rect.left - 200 + 'px'
+            //transition: 'all ease .3s'
+        }
+        state.dropDown.show = true
+    },
+    [UPDATE_DROP_ITEM] (state, config) {
+        state.dropItem = config
+        state.dropDown.show = false
     }
 }
 
 const getters = {
-    ['getProgress'] (state) {return state.gProgress},
-    ['getGPS'] (state) { return state.gProgressShow},//不是GPS 是gProgressShow的简写
-    ['getHSide'] (state) {return state.handleSide},
-    ['getASide'] (state) {return state.autoSide},
-    ['getMinSide'] (state) {return state.minSide},
-    ['getDrop'] (state) {return state.dropShow}
-
+    ['getProgress'](state) { return state.gProgress },
+    ['getGPS'](state) { return state.gProgressShow },//不是GPS 是gProgressShow的简写
+    ['getHSide'](state) { return state.handleSide },
+    ['getASide'](state) { return state.autoSide },
+    ['getMinSide'](state) { return state.minSide },
+    ['getDrop'](state) { return state.dropDown },
+    ['getDropItem'] (state) { return state.dropItem}
 }
 
 export default {

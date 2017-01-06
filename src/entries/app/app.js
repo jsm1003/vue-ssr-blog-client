@@ -1,15 +1,13 @@
 import Vue from 'vue'
 import App from './App.vue'
-import store from './store'
-import router from './router'
+import store from '~src/store'
+import router from '~src/router'
 import { sync } from 'vuex-router-sync'
-//import museComponents from './muse'
+import directives from '~src/directives'
 
-// Object.keys(museComponents).forEach((key) => {
-//     Vue.component(museComponents[key].name, museComponents[key])
-// })
-//以上加载muse UI
-//muse ui我暂时不需要了
+Object.keys(directives).forEach(key => {
+  Vue.directive(key, directives[key])
+})
 
 sync(store, router)
 

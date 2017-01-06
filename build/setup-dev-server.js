@@ -1,15 +1,18 @@
 const path = require('path')
 const webpack = require('webpack')
 const MFS = require('memory-fs')
-
 const clientConfig = require('./webpack.client.config')
 const serverConfig = require('./webpack.server.config')
 
 module.exports = function setupDevServer (app, opts) {
   // modify client config to work with hot middleware
-  clientConfig.entry.app = ['webpack-hot-middleware/client', clientConfig.entry.app]
-  clientConfig.entry.admin = ['webpack-hot-middleware/client', clientConfig.entry.admin]
-  clientConfig.entry.login = ['webpack-hot-middleware/client', clientConfig.entry.login]
+  // clientConfig.entry.app = ['webpack-hot-middleware/client', clientConfig.entry.app]
+  // clientConfig.entry.admin = ['webpack-hot-middleware/client', clientConfig.entry.admin]
+  // clientConfig.entry.login = ['webpack-hot-middleware/client', clientConfig.entry.login]
+  Object.keys(clientConfig.entry).forEach(function(name) {
+    clientConfig.entry[name] = ['webpack-hot-middleware/client'].concat(clientConfig.entry[name])
+})
+
   //服务端多入口
   clientConfig.output.filename = '[name].js'
   clientConfig.plugins.push(
@@ -29,10 +32,15 @@ module.exports = function setupDevServer (app, opts) {
   app.use(devMiddleware)
   clientCompiler.plugin('done', () => {
     const fs = devMiddleware.fileSystem
-    const filePath = path.join(clientConfig.output.path, 'index.html')//client ssr 页面
+
     //在这里判断文件是否在内存中
-    if (fs.existsSync(filePath)) {
-      const index = fs.readFileSync(filePath, 'utf-8')
+    // Object.keys(clientConfig.entry).forEach(function(name){
+    //   console.log(name)
+ 
+    // })
+    const appPath = path.join(clientConfig.output.path, 'app.html')//client ssr 页面
+    if (fs.existsSync(appPath)) {
+      const index = fs.readFileSync(appPath, 'utf-8')
       opts.indexUpdated(index)
     }
      const adminPath = path.join(clientConfig.output.path, 'admin.html')//admin spa 页面

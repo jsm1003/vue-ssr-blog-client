@@ -16,7 +16,7 @@
   </div>
 </template>
 <script>
-import api from 'src/api'
+import api from '~src/api'
     export default {
       //这里不应该做缓存
       //因为是httponly所以客户端并不能访问到这个cookie，只能通过推出后给出一个vuex状态，然后根据这个状态来动态设置cookie

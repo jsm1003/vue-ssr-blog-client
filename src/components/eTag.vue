@@ -15,7 +15,7 @@
 </template>
 <script>
     import {mapGetters} from 'vuex'
-    import api from 'src/api'
+    import api from '~src/api'
     export default {
         //tag编辑这一块先不弄debounce呢
         //需不需要name属性呢？

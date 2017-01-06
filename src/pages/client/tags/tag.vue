@@ -4,7 +4,7 @@
   </div>
 </template>
 <script>
-  import itemList from 'components/item-list'
+  import itemList from '~components/item-list'
   import { mapGetters } from 'vuex'
   const fetchListData = (store, config = { page: 1 }) => {
     const base = {

@@ -2,7 +2,6 @@
     <div class="myside" :class="{open: handleSide}" v-show="autoSide">
         <div class="list">
             <router-link class="item" :to="{name: 'as'}"><i class="material-icons icon">home</i>Articles</router-link>
-            <!--他肯定不是active-class-->
             <router-link class="item" :to="{name: 'ts'}"><i class="material-icons icon">apps</i>Tags</router-link>
             <router-link v-if="login" class="item" :to="{name: 'u'}"><i class="material-icons icon">account_circle</i>Profile</router-link>
             <router-link class="item" :to="{name: 'up'}"><i class="material-icons icon">people</i>People</router-link>
@@ -11,8 +10,6 @@
         <div class="copyRight">
             <div><a class="source" href="https://github.com/ZinCode/vue-ssr-blog-client" target="blank">博客源码</a></div>
             <div>©2017 Josephine</div>
-            <!--copyright可以弄成一个组件的形式？-->
-            <!--这个时间要改一改-->
         </div>
     </div>
 </template>
@@ -55,7 +52,7 @@
         left: 0;
         padding-top: 16px;
         width: 210px;
-        background-color: #eeeeee;
+        background-color: #f4f5f7;
         z-index: 50;
         will-change: transform;
        transform: translateX(-210px);

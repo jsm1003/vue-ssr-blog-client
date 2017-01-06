@@ -12,6 +12,8 @@ export const MIN_SIDE = 'MIN_SIDE'
 //dropDown
 export const OPEN_DROP = 'OPEN_DROP'
 export const CLOSE_DROP = 'CLOSE_DROP'
+export const TOGGLE_DROP = 'TOGGLE_DROP'
+export const UPDATE_DROP_ITEM = 'UPDATE_DROP_ITEM'
 //用户状态
 export const LOGOUT = 'LOGOUT'
 export const USER_INFO = 'USER_INFO'

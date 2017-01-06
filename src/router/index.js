@@ -1,23 +1,23 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import articles from 'client/articles/articles'
-import article from 'client/article/article'
+import articles from '~client/articles/articles'
+import article from '~client/article/article'
 
-import profile from 'client/profile/profile'
+import profile from '~client/profile/profile'
 
-import people from 'client/people/people'
+import people from '~client/people/people'
 
-import edit from 'client/write/edit'
-import drafts from 'client/drafts/drafts'
+import edit from '~client/write/edit'
+import drafts from '~client/drafts/drafts'
 
-import tags from 'client/tags/tags'
-import tag from 'client/tags/tag'
+import tags from '~client/tags/tags'
+import tag from '~client/tags/tag'
 
-import auth from 'client/about/auth'
-import resume from 'client/about/resume'
+import auth from '~client/about/auth'
+import resume from '~client/about/resume'
 
-import search from 'client/search/search'
+import search from '~client/search/search'
 //后续会实现路由懒加载、滚动行为、过渡特效，
 //再往后会考虑路由别名，比如 /u的别名为/user
 Vue.use(VueRouter)

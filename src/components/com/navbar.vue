@@ -31,7 +31,7 @@
                     <i class="material-icons">notifications</i>
                 </div>
                 <!--<div class="item btn" title="用户名字">-->
-                <div class="item btn" @click.stop="drop" ref="account" v-if="login" :title="user.email">
+                <div class="item btn" @click="drop" ref="account" v-if="login" :title="user.email">
                     <span>{{ user.username }}</span>
                     <!--<div class="list">
                         <content><div class="inner">haha</div></content>
@@ -41,15 +41,15 @@
                 <div class="item btn" title="登陆" @click="signIn" v-else>
                     <i class="material-icons">account_circle</i>
                 </div>
-                <drop :position="position" :data="dropData" @dropClick="itemClick"></drop>
+                <!--<drop :position="position" :data="dropData" @dropClick="itemClick"></drop>-->
             </div>
         </div>
     </div>
 </template>
 <script>
-    import api from 'src/api'
+    import api from '~src/api'
     import { mapGetters } from 'vuex'
-    import drop from 'components/drop'
+    import drop from '~components/drop'
 
     const fetchUserData = (store) => {
         return store.dispatch('getUserData')
@@ -57,33 +57,37 @@
     export default {
         name: 'navbar',
         preFetch: fetchUserData,
-        data () {
+        data() {
             return {
-                dropData: ['个人信息','退出','我的草稿'],
-                position: {}
+                dropData: ['个人信息', '退出', '我的草稿']
             }
         },
         computed: {
              ...mapGetters({
-                 user: 'getUserInfo',
-                 login: 'getLogState'
+                user: 'getUserInfo',
+                login: 'getLogState',
+                dropItem: 'getDropItem'
             })
         },
-        components: {
-            drop
+        watch: {
+            dropItem () {//感觉这里watch有瑕疵啊？就是重复点击同一个item，按理说他不会触发，但是他触发了。。（我希望的是他触发）
+                this.itemClick()
+            }
         },
         methods: {
-            itemClick (item) {
-                switch(item) {
+            itemClick() {
+                const item = this.dropItem.item
+                //if(this.dropItem.id) return  这一句先不加呢
+                switch (item) {
                     case '个人信息':
-                    this.$router.push({name: 'u'})
-                    break
+                        this.$router.push({ name: 'u' })
+                        break
                     case '退出':
-                    this.logout()
-                    break
+                        this.logout()
+                        break
                     case '我的草稿':
-                    this.$router.push({name: 'ds'})
-                    break
+                        this.$router.push({ name: 'ds' })
+                        break
                 }
             },
             signIn() {
@@ -99,17 +103,13 @@
             logout() {
                 this.$store.dispatch('logout')
             },
-            drop() {          
+            drop() {
+                //这里还有一个问题，就是在打开dropdown的状态下再点击他没有反应，而我希望他关闭dropdown,这个小问题暂时先不管呢
                 const el = this.$refs.account
-                const rect = el.getBoundingClientRect()
-                this.position = {
-                    top: rect.top + rect.width + 'px',
-                    //transition: 'all ease .3s'
-                }
-               this.$store.dispatch('openDrop')
+                this.$store.commit('TOGGLE_DROP', { el, data: this.dropData })
             }
         },
-        mounted () {
+        mounted() {
             fetchUserData(this.$store)
         }
     }
@@ -122,12 +122,12 @@
         /*height: 64px;*/
         width: 100%;
         /*background-color: #aaaaaa;*/
-        background-color: #0f9d58;
+        background-color: #4285f4;
         box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
         position: fixed;
         top: 0;
         z-index: 100;
-        color: white;
+        color: #ffffff;
     }
     
     .banner {

@@ -4,7 +4,7 @@ import {
     ALL_TAGS_GET,
     TOPICS_IN_TAG
 } from '../mutation-types'
-import api from 'src/api'
+import api from '~src/api'
 
 const state = {
     article: {},

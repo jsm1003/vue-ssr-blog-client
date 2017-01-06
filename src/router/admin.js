@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import adlogin from 'admin/admin-Login'
+import adlogin from '~admin/admin-Login'
 
 Vue.use(VueRouter)
 

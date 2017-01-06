@@ -2,7 +2,7 @@ import {
     LOGOUT,
     USER_INFO
 } from '../mutation-types'
-import api from 'src/api'
+import api from '~src/api'
 
 const state = {
     user: {},

@@ -50,5 +50,14 @@ api服务器地址https://github.com/ZinCode/vue-ssr-blog-api
 目前在攥写或发布文章的时候还没有提示，请按F12打开console控制台，在哪里可以看到各种提示信息
 
 ## License
-
+      
 [MIT](http://opensource.org/licenses/MIT)
+
+#### 需要增加的组件
+1. toast
+2. dropdown （已完成）
+3. modal
+4. ripple（这个可以不加）
+5. chip
+6. nprogress （临时的）
+7. alert（不能用toast的样式）

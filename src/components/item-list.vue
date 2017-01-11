@@ -45,15 +45,15 @@
 </script>
 <style scoped>
   .myposts {
-    display: inline-block;
-    box-sizing: border-box;
-    text-align: center;
-    
+    width: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box; 
     /*animation: slideContent .3s cubic-bezier(0.0,0.0,0.2,1);*/
     /*初次加载向上滑动特效*/
   }
   .item {
-    display: inline-block;
     box-sizing: border-box;
     text-align: left;
     max-width: 730px;
@@ -120,16 +120,14 @@
     color: #8590a6;
   }
   .more-item {
-    width: 100%;
     font-size: 14px;
     color: #9e9e9e;
   }
   
-  /*果然是，后写的会把先写的顶替掉*/
-  @media only screen and (min-width: 440px) {
+
+  /*@media only screen and (min-width: 440px) {
     .myposts {
       width: calc((100% + 210px) - 2*16px);
-      /*max-width: 800px;*/
     }
   }
   
@@ -157,5 +155,5 @@
       max-width: 1084px;
       width: calc(66.66% - 24px);
     }
-  }
+  }*/
 </style>

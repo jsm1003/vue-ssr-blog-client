@@ -38,7 +38,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-          side: 'side',
+         // side: 'side',
           gProgress: 'getProgress',
           gPS: 'getGPS',
           dropDown: 'getDrop'
@@ -49,12 +49,11 @@ export default {
       console.log('滚动啦')
     },
     resize () {
-      if(window.innerWidth > 750) {
-        this.$store.dispatch('autoOpen')
-      } else {
-        console.log('xiao')
-        this.$store.dispatch('autoClose')
-      }
+      // if(window.innerWidth > 750) {
+      //   this.$store.commit('autoSide', )
+      // } else {
+      //   this.$store.dispatch('autoClose')
+      // }
     },
     updateLogin (e) {
       if(e.key === 'testIsLogin') {
@@ -84,7 +83,7 @@ export default {
         this.resize()//开始时执行一遍
         window.addEventListener('storage', this.updateLogin)
         window.addEventListener('scroll', throttle(this.scroll, 1000,{trailing: false}))
-        window.addEventListener('resize', throttle(this.resize, 800))
+        window.addEventListener('resize', throttle(this.resize, 200))
         //默认应该获取一下用户的头像等基本信息       
     }
   }

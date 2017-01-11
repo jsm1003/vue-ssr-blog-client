@@ -1,35 +1,63 @@
 <template>
-  <div class="resume">
-    <div class="header">
-      <div class="user">
-        <div class="avatar">
-          <img class="avatar-p" src="../../../assets/img/auth.jpg" alt="" />
-          <!--图片引用这里还是不爽啊-->
+    <div class="resume">
+        <div class="header">
+            <div class="user">
+                <div class="avatar">
+                    <img class="avatar-p" src="../../../assets/img/auth.jpg" alt="" />
+                    <!--图片引用这里还是不爽啊-->
+                </div>
+                <div class="info">
+                    <div class="authname">瞎看什么</div>
+                    <div class="sign">别再用肉眼看电影了，用别的眼睛看</div>
+                </div>
+            </div>
         </div>
-        <div class="info">
-          <div class="authname">瞎看什么</div>
-          <div class="sign">别再用肉眼看电影了，用别的眼睛看</div>
+        <div class="main">
+            <div class="item" v-for="item in resume.list">
+                <div class="heading">{{ item.type }}</div>
+                <ul class="detail">
+                    <li class="list" v-for="i in item.item">
+                        <div v-if="i.summary">
+                            <div class="title">{{ i.summary}}</div>
+                            <div class="list-item" v-for="description in i.description">{{ description}}</div>
+                        </div>
+                        <div class="list-item" v-else>{{i}}</div>
+                    </li>
+                </ul>
+            </div>
         </div>
-      </div>
     </div>
-    <div class="main">主体内容</div>
-  </div>
 </template>
 <script>
-  import api from '~src/api'
-  export default {
-    name: 'resume',
-    async mounted() {
-      var res = await api.get('/resume')
-      console.log('>>', res)
+    import api from '~src/api'
+    import { mapGetters } from 'vuex'
+    function fetchResumeData(store) {
+        store.dispatch('getResume')
     }
-  }
+    export default {
+        name: 'resume',
+        preFetch: fetchResumeData,
+        computed: {
+            ...mapGetters({
+                resume: 'getResume'
+            })
+        },
+        mounted() {
+            // var {data} = await api.get('/resume')
+            // console.log('>>', res)
+            fetchResumeData(this.$store)
+        }
+    }
 </script>
 <style scoped>
+.resume {
+    /*border: 1px solid red;*/
+}
   .header {
     background: url('../../../assets/img/winter.jpg') no-repeat;
     background-size: cover;
-    width: 1000px;
+    width: 100%;
+    /*max-width: 850px;*/
     height: 200px;
     position: relative;
     color: #ffffff;
@@ -52,7 +80,7 @@
     height: 59px;
     position: absolute;
     bottom: 0;
-    z-index: 100;
+    z-index: 1;
 }
 .user::after {
     display: block;
@@ -88,15 +116,21 @@
     /*border: 1px solid blue;*/
 }
 .authname {
-    font-weight: 700;
-    font-size: 18px;
+    font-weight: 500;
+    font-size: 30px;
     line-height: 1em;
-    height: 18px;
-    margin-bottom: 8px;
+    /*height: 18px;*/
+    /*margin-bottom: 8px;*/
+    margin-top: 10px;
+}
+.authname:hover {
+    cursor: pointer;
+    text-decoration: underline;
 }
 .sign {
-    color: #d6dee4;
-    font-size: 12px;
+    margin-top: 20px;
+    color: #212121;
+    font-size: 14px;
     line-height: 26px;
     height: 26px;
     width: 740px;
@@ -104,6 +138,53 @@
     /*这里的宽度*/
     text-overflow: ellipsis;
     font-family: 'Hiragino Sans GB','Microsoft YaHei',Arial,sans-serif;
+}
+.main {
+    margin-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    /*第一行在上方*/
+
+}
+.item {
+    margin-left: 20px;
+    margin-top: 20px;
+    /*上面的是临时的*/
+    background: #ffffff;
+    width: 400px;
+    height: auto;
+    padding: 24px;
+    border-radius: 2px;
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.14);
+}
+.heading {
+    color: rgba(0,0,0,0.87);
+    font: 500 20px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+}
+.detail {
+    margin-top: 24px;
+}
+.list {
+    margin-top: 16px;
+}
+.title {
+    color: rgba(0,0,0,0.54);
+    font: 500 14px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+    margin-bottom: 8px;
+}
+.list-item {
+    color: #212121;
+    font: 400 16px  Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+    line-height: 1.5em;
+    margin-top: 10px;
+    padding-left: 28px;
+}
+.list-item::before {
+    content: '★';
+    /*暂时先用这个星星代替*/
+    margin-left: -28px;
+    width: 28px;
+    display: inline-block;
 }
 
 @keyframes snow{
@@ -114,5 +195,22 @@
         background-position: -3600px 0px;
     }
 }
+@media only screen and (min-width: 440px){
+    .resume {
+    width: calc((100% + 210px) - 2*16px);
+    }
+}
 
+@media only screen and (min-width: 1070px){
+    .resume {
+    width: calc((100% + 210px)*8/10 - 24px);
+    max-width: 1084px;
+    }
+}
+@media only screen and (min-width: 1280px){
+    .resume {
+    width: calc((100% + 210px)*2/3 - 24px);
+    max-width: 1084px;
+    }
+}
 </style>

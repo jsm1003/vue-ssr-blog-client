@@ -70,7 +70,7 @@
             })
         },
         watch: {
-            dropItem () {//感觉这里watch有瑕疵啊？就是重复点击同一个item，按理说他不会触发，但是他触发了。。（我希望的是他触发）
+            dropItem() {//感觉这里watch有瑕疵啊？就是重复点击同一个item，按理说他不会触发，但是他触发了。。（我希望的是他触发）
                 this.itemClick()
             }
         },
@@ -97,8 +97,13 @@
                 }
             },
             handleSide() {
+                if (typeof window !== 'undefined') {
+                    var big = true
+                    big = window.innerWidth > 750 ? true : false
+                    this.$store.commit('CHANGE_SIDE', big)
+                }
                 //如果是其他页面，可以添加一个判断来判定是否打开minside
-                this.$store.dispatch('handleSide')
+                // this.$store.dispatch('handleSide')
             },
             logout() {
                 this.$store.dispatch('logout')

@@ -1,5 +1,5 @@
 <template>
-  <div class="linshi">
+  <div class="articles">
     <item-list :topic="topic" @needMore="loadMore"></item-list>
     <router-link v-if="logState" class="float" :to="{name: 'newDraft'}" title="撰写新文章">
       <i class="material-icons edit">mode_edit</i>
@@ -40,9 +40,8 @@
   }
 </script>
 <style scoped>
-  .linshi {
+  .articles {
     width: 100%;
-    text-align: center;
   }
  .float {
     position: fixed;

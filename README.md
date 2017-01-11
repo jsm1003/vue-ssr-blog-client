@@ -43,7 +43,7 @@ api服务器地址https://github.com/ZinCode/vue-ssr-blog-api
 
 1.  多用户系统
 2.  支持在线撰写文章、发布文章、查看草稿、草稿实时保存（使用markdown语法编写文章，支持实时预览）
-3.  UI漂亮（自己强行加上去的..，借鉴G+的UI风格）
+3.  UI漂亮（自己强行加上去的...，借鉴G+的UI风格）
 
 #### 博客使用说明
 
@@ -61,3 +61,5 @@ api服务器地址https://github.com/ZinCode/vue-ssr-blog-api
 5. chip
 6. nprogress （临时的）
 7. alert（不能用toast的样式）
+
+#### 样式这一块，等做完后吧公共样式分离出来

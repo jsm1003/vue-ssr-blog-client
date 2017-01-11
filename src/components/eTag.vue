@@ -29,14 +29,10 @@
         },
          computed: {
            haveInAllTags () {
-               return this.allTags.some(i => {
-                     return (i.name === this.currentTag)
-            })
+               return this.allTags.some(i => i.name === this.currentTag)
            },
            haveInTags () {
-               return this.tags.some(i => {
-                     return (i.name === this.currentTag)
-                 })
+               return this.tags.some(i => i.name === this.currentTag)
            }
         },
         methods: {
@@ -45,9 +41,7 @@
                      console.log('已经添加了')
                  } else if (this.haveInAllTags) {
                      //console.log(this.allTags)
-                     var tag = this.allTags.find(i => {
-                         return i.name === this.currentTag
-                     })
+                     var tag = this.allTags.find(i => i.name === this.currentTag)
                      this.$emit('addTag', tag)
                      //console.log(tag)
                      await api.patch('/draft/edit/oldtag',{tag, id:this.id})
@@ -67,17 +61,13 @@
                this.$emit('removeTag', index)
                var {data:{remove}} = await api.delete('/draft/edit/removetag', {tag, id: this.id})             
                if (remove) {
-                   var dTag = this.allTags.find(i => {
-                       return i.objectId === tag.objectId
-                   })
+                   var dTag = this.allTags.find(i => i.objectId === tag.objectId)
                    this.allTags.splice(this.allTags.indexOf(dTag),1)
                } 
                console.log('标签删除成功')  
            },
            async addInTags (tag){
-               var have = this.tags.some(i => {
-                   return (i.name === tag.name)
-               })
+               var have = this.tags.some(i => i.name === tag.name)
                if (have) {
                    console.log('重复了')
                    return

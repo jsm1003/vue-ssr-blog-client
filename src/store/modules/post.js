@@ -2,7 +2,8 @@ import {
     ARTICLE_GET,
     RECEIVE_TOPICS,
     ALL_TAGS_GET,
-    TOPICS_IN_TAG
+    TOPICS_IN_TAG,
+    RESUME
 } from '../mutation-types'
 import api from '~src/api'
 
@@ -19,7 +20,8 @@ const state = {
         list: [],
         haveNext: 0,
         page: 1
-    }
+    },
+    resume: {}
 }
 
 const actions = {
@@ -49,13 +51,17 @@ const actions = {
         }
 
     },
-    async['getAllTags']({commit}) {
+    async ['getAllTags']({commit}) {
         var {data: {allTags, code, msg}} = await api.get('/tags')
         if (code === 200) {
             commit(ALL_TAGS_GET, allTags)
         } else {
             console.log(msg)
         }
+    },
+    async ['getResume']({commit}) {
+        var {data} = await api.get('/resume')
+        commit(RESUME, data)
     }
 }
 
@@ -84,14 +90,18 @@ const mutations = {
             list = state.topicInTag.list.concat(list)
         }
         state.topicInTag = { list, haveNext, page }
+    },
+    [RESUME] (state, data) {
+        state.resume = data
     }
 }
 
 const getters = {
-    ['getTopics'] (state) { return state.topic },
-    ['getArticle'] (state) { return state.article },
-    ['getAllTags'] (state) { return state.allTags },
-    ['topicInTag'] (state) {return state.topicInTag}
+    'getTopics' : state =>  state.topic ,
+    'getArticle' : state =>  state.article ,
+    'getAllTags' : state =>  state.allTags ,
+    'topicInTag' : stat  => state.topicInTag,
+    'getResume' : state =>  state.resume
 }
 
 export default {

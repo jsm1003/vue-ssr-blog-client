@@ -1,13 +1,10 @@
 import {
+    CHANGE_SIDE,
     START_PROGRESS,
     FINISH_PROGRESS,
     DONE_PROGRESS,
     HIDE_PROGRESS,
     SHOW_PROGRESS,
-    HANDLE_SIDE,
-    AUTO_CLOSE,
-    AUTO_OPEN,
-    MIN_SIDE,
     CLOSE_DROP,
     TOGGLE_DROP,
     UPDATE_DROP_ITEM
@@ -18,10 +15,14 @@ const state = {
         start: false,
         finish: false
     },
+    sidebar: {
+        side: true,
+        min: false,
+    },
     gProgressShow: true,
-    autoSide: true, //根据屏幕大小调节侧边栏显示状况
-    handleSide: true,//true 表示侧边栏打开 false 表示侧边栏关闭
-    minSide: false, //小屏的时候显示的侧边栏
+    // autoSide: true, //根据屏幕大小调节侧边栏显示状况
+    // handleSide: true,//true 表示侧边栏打开 false 表示侧边栏关闭
+    // minSide: false, //小屏的时候显示的侧边栏
     dropDown: { //总感觉这里的dropdown组件写的还是不行
         data:[],
         position:{},
@@ -47,21 +48,18 @@ const actions = {
     ['gShow']({commit}) {
         commit(SHOW_PROGRESS)
     },
-    ['handleSide']({commit}) {
-        commit(HANDLE_SIDE)
-    },
-    ['autoClose']({commit}) {
-        commit(AUTO_CLOSE)
-    },
-    ['autoOpen']({commit}) {
-        commit(AUTO_OPEN)
-    },
-    ['minSideClose']({commit}) {
-        commit(MIN_SIDE)
-    },
 }
 
 const mutations = {
+    [CHANGE_SIDE] (state, option) {
+        if(option) {
+        state.min = false
+         state.sidebar.side = !state.sidebar.side
+        } else {
+            state.min = true
+            console.log('还没有做')
+        }
+    },
     [START_PROGRESS](state) {
         state.gProgress.start = true
     },
@@ -78,21 +76,6 @@ const mutations = {
     [SHOW_PROGRESS](state) {
         state.gProgressShow = true
     },
-    [HANDLE_SIDE](state) {
-        if (!state.autoSide) {//就是因为这里，他才不能用css的media来设置
-            state.minSide = true
-        }
-        state.handleSide = !state.handleSide
-    },
-    [AUTO_CLOSE](state) {
-        state.autoSide = false
-    },
-    [AUTO_OPEN](state) {
-        state.autoSide = true
-    },
-    [MIN_SIDE](state) {
-        state.minSide = false
-    },
     [CLOSE_DROP](state) {
         state.dropDown.show = false
     },
@@ -102,7 +85,6 @@ const mutations = {
         state.dropDown.position = {
             top: rect.top + rect.height + 'px',
             left: rect.left - 200 + 'px'
-            //transition: 'all ease .3s'
         }
         state.dropDown.show = true
     },
@@ -113,13 +95,11 @@ const mutations = {
 }
 
 const getters = {
-    ['getProgress'](state) { return state.gProgress },
-    ['getGPS'](state) { return state.gProgressShow },//不是GPS 是gProgressShow的简写
-    ['getHSide'](state) { return state.handleSide },
-    ['getASide'](state) { return state.autoSide },
-    ['getMinSide'](state) { return state.minSide },
-    ['getDrop'](state) { return state.dropDown },
-    ['getDropItem'] (state) { return state.dropItem}
+    'getSidebar' : state => state.sidebar.side,
+    'getProgress' : state => state.gProgress ,
+    'getGPS' : state => state.gProgressShow ,//不是GPS 是gProgressShow的简写
+    'getDrop': state => state.dropDown ,
+    'getDropItem': state => state.dropItem
 }
 
 export default {

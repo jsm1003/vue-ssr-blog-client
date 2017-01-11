@@ -1,9 +1,13 @@
 <template>
-    <div v-clickoutside v-if= "dropDown.show" class="list" :style="dropDown.position">
-        <content v-for="item in dropDown.data" @click="itemclick(item)">
-            <div class="inner">{{ item }}</div>
-        </content>
-    </div>
+    <!--<transition name="fade">-->
+        <!--这个动画为什么就弄不成功呢？， 擦-->
+        <div v-clickoutside v-if="dropDown.show" class="list" :class="{c: dropDown.show}" :style="dropDown.position">
+            <content v-for="item in dropDown.data" @click="itemclick(item)">
+                <div class="inner">{{ item }}</div>
+            </content>
+        </div>
+    <!--</transition>-->
+
 </template>
 <script>
     import { mapGetters } from 'vuex'
@@ -16,7 +20,7 @@
         },
         methods: {
             itemclick(item) {
-                this.$store.commit('UPDATE_DROP_ITEM',{
+                this.$store.commit('UPDATE_DROP_ITEM', {
                     id: this.dropDown.id,
                     item: item
                 })
@@ -25,19 +29,26 @@
     }
 </script>
 <style scoped>
+    .fade-enter {
+        width: 0;
+    }
+    .fade-enter-active {
+        /*width: 500px;*/
+        transition: width .7s;
+    }
         .list {
         background-color: #ffffff;
+        width: 0;
         width: 192px;
         height: auto;
         min-width: 192px;
         padding: 16px 0;
+        border-radius: 2px;
         position: absolute;
         box-shadow:  0 3px 10px rgba(0,0,0,.156863),0 3px 10px rgba(0,0,0,.227451);
         z-index: 1000;
+        
     }
-    /*.live {
-        transition: left .2s cubic-bezier(0.0,0.0,0.2,1),max-width .2s cubic-bezier(0.0,0.0,0.2,1),max-height .2s cubic-bezier(0.0,0.0,0.2,1),opacity .05s linear,top .2s cubic-bezier(0.0,0.0,0.2,1);
-    }*/
     content {
         display: flex;
         /*上面这两行可能会删除掉*/

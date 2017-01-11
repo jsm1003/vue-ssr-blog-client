@@ -1,5 +1,5 @@
 <template>
-    <div class="myside" :class="{open: handleSide}" v-show="autoSide">
+    <div class="myside">
         <div class="list">
             <router-link class="item" :to="{name: 'as'}"><i class="material-icons icon">home</i>Articles</router-link>
             <router-link class="item" :to="{name: 'ts'}"><i class="material-icons icon">apps</i>Tags</router-link>
@@ -15,18 +15,34 @@
 </template>
 <script>
     import { mapGetters } from 'vuex'
+    import { on, getTransitionEndEvent } from '~src/utils'
     export default {
         computed: {
             ...mapGetters({
-                autoSide: 'getASide',
-                handleSide: 'getHSide',
+                sidebar: 'getSidebar',
                 login: 'getLogState',
                 user: 'getUserInfo',
             })
-            // close () {
-            //     if(handleSide)
-            // }
-        }
+        },
+        watch: {
+            sidebar(val) {
+                if (val) {
+                    this.$el.setAttribute('style', 'transition: transform .3s cubic-bezier(0.0,0.0,0.2,1);transform: translateX(-210px);')
+                } else {
+                    this.$el.setAttribute('style', 'transition: transform .3s cubic-bezier(0.0,0.0,0.2,1);transform: translateX(0px);')
+                }
+            }
+        },
+        // methods: {
+        //     moveStyle(e) {
+        //         let node = e.target
+        //         node.removeAttribute('style')
+        //         // node.setAttribute('style', 'width: 100%')
+        //     }
+        // },
+        // mounted() {
+        //     on(this.$el, getTransitionEndEvent(), this.moveStyle)
+        // }
     }
 </script>
 <style scoped>
@@ -37,6 +53,7 @@
         white-space: nowrap;
         word-break: break-all;
     }
+    /*上面这个没用到*/
     .icon {
         font-weight: 300;
         width: 20px;
@@ -46,17 +63,18 @@
         color: #757575;
     }
     .myside {
+        display: none;
         position: fixed;
         top: 64px;
         bottom: 0;
         left: 0;
         padding-top: 16px;
         width: 210px;
-        background-color: #f4f5f7;
+        background-color: #eeeeee;
         z-index: 50;
-        will-change: transform;
-       transform: translateX(-210px);
-        transition: transform .3s cubic-bezier(0.0,0.0,0.2,1);
+        /*will-change: transform;*/
+       /*transform: translateX(-210px);*/
+        /*transition: transform .3s cubic-bezier(0.0,0.0,0.2,1);*/
     }
     
     .open {     
@@ -102,4 +120,9 @@
         font-weight: 500;
         color: #757575;
     }
+@media only screen and (min-width: 750px) {
+    .myside {
+        display: block;
+    }
+}
 </style>

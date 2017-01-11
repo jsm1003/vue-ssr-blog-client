@@ -46,8 +46,8 @@ const mutations = {
 }
 
 const getters = {
-    ['getUserInfo'](state) { return state.user },
-    ['getLogState'](state) { return state.logState }
+    'getUserInfo' : state => state.user ,
+    'getLogState' : state => state.logState 
 }
 
 export default {

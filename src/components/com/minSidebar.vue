@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="min-side" :class="{open:minSide}">
+        <div class="min-side">
             <!--这里的动画效果就应该用transition来弄-->
             <div class="top" @click="closeMinSide">
                 <div class="sitename">Josephine</div>
@@ -20,7 +20,7 @@
                 <!--这个时间要改一改-->
             </div>
         </div>
-        <div class="modal" v-if="minSide" @click="closeMinSide"></div>
+        <!--<div class="modal" v-if="minSide" @click="closeMinSide"></div>-->
         <!--这个modal可以弄成伪元素啊，以后再改-->
     </div>
 
@@ -30,7 +30,7 @@
     export default {
         computed: {
             ...mapGetters({
-                minSide: 'getMinSide',
+               // minSide: 'getMinSide',
                 login: 'getLogState'
             })
         },

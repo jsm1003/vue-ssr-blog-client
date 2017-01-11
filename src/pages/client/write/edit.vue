@@ -47,6 +47,8 @@
              }),
              mark () {
                  return markdown(this.draft.content)
+                 //箭头函数的this这一块先等会
+                 //双冒号语法？
              }
         },
         // watch: {
@@ -79,9 +81,7 @@
                 })
             },
             async publish() {
-                 const tags = this.tags.map(i => {
-                     return JSON.parse(JSON.stringify(i))
-                 })
+                 const tags = this.tags.map(i => JSON.parse(JSON.stringify(i)))
                  const draft = JSON.parse(JSON.stringify(this.draft))
                 if (this.$route.name === 'aEdit') {
                     var {data} = await api.post('/draft/edit/publishold', {draft, tags, id: this.$route.params.id})
@@ -107,7 +107,7 @@
                  let {data: {allTags, draft,tags,code, msg}} = await api.get(url, id)
                     this.allTags = allTags
                     if(tags.length !== 0) {
-                         this.tags = tags.map(({objectId, name}) => {return {objectId, name}})
+                         this.tags = tags.map(({objectId, name}) => {objectId, name})
                     } else {
                         console.log('没有标签')
                     }                

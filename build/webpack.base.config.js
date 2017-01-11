@@ -54,6 +54,7 @@ var baseConfig = {
             test: /\.(jpg|png|gif|eot|svg|ttf|woff|woff2)$/,
             loader: 'url-loader',
             options: {
+                limit: 10000,
                 name: '[name].[hash:7].[ext]'
             }
         }

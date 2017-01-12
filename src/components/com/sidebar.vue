@@ -1,22 +1,28 @@
 <template>
-    <div class="myside">
-        <div class="list">
-            <router-link class="item" :to="{name: 'as'}"><i class="material-icons icon">home</i>Articles</router-link>
-            <router-link class="item" :to="{name: 'ts'}"><i class="material-icons icon">apps</i>Tags</router-link>
-            <router-link v-if="login" class="item" :to="{name: 'u'}"><i class="material-icons icon">account_circle</i>Profile</router-link>
-            <router-link class="item" :to="{name: 'up'}"><i class="material-icons icon">people</i>People</router-link>
-            <router-link class="item" :to="{name: 'aa'}"><i class="material-icons icon">headset</i>About</router-link>
+    <transition name="slide" @afterEnter="handleTrans" @afterLeave="handleTrans">
+        <div class="myside" v-if="sidebar.side">
+            <div class="list">
+                <router-link class="item" :to="{name: 'as'}"><i class="material-icons icon">home</i>Articles</router-link>
+                <router-link class="item" :to="{name: 'ts'}"><i class="material-icons icon">apps</i>Tags</router-link>
+                <router-link v-if="login" class="item" :to="{name: 'u'}"><i class="material-icons icon">account_circle</i>Profile</router-link>
+                <router-link class="item" :to="{name: 'up'}"><i class="material-icons icon">people</i>People</router-link>
+                <router-link class="item" :to="{name: 'aa'}"><i class="material-icons icon">headset</i>About</router-link>
+            </div>
+            <div class="copyRight">
+                <div><a class="source" href="https://github.com/ZinCode/vue-ssr-blog-client" target="blank">博客源码</a></div>
+                <div>©2017 Josephine</div>
+            </div>
         </div>
-        <div class="copyRight">
-            <div><a class="source" href="https://github.com/ZinCode/vue-ssr-blog-client" target="blank">博客源码</a></div>
-            <div>©2017 Josephine</div>
-        </div>
-    </div>
+    </transition>
 </template>
 <script>
     import { mapGetters } from 'vuex'
-    import { on, getTransitionEndEvent } from '~src/utils'
     export default {
+        data() {
+            return {
+                transitionEnd: true
+            }
+        },
         computed: {
             ...mapGetters({
                 sidebar: 'getSidebar',
@@ -24,25 +30,12 @@
                 user: 'getUserInfo',
             })
         },
-        watch: {
-            sidebar(val) {
-                if (val) {
-                    this.$el.setAttribute('style', 'transition: transform .3s cubic-bezier(0.0,0.0,0.2,1);transform: translateX(-210px);')
-                } else {
-                    this.$el.setAttribute('style', 'transition: transform .3s cubic-bezier(0.0,0.0,0.2,1);transform: translateX(0px);')
-                }
+        methods: {
+            handleTrans() {
+                this.$store.commit('SIDE_RUN', false)
             }
-        },
-        // methods: {
-        //     moveStyle(e) {
-        //         let node = e.target
-        //         node.removeAttribute('style')
-        //         // node.setAttribute('style', 'width: 100%')
-        //     }
-        // },
-        // mounted() {
-        //     on(this.$el, getTransitionEndEvent(), this.moveStyle)
-        // }
+        }
+
     }
 </script>
 <style scoped>
@@ -54,6 +47,16 @@
         word-break: break-all;
     }
     /*上面这个没用到*/
+    .slide-enter-active {
+        transition: all .3s cubic-bezier(0.0,0.0,0.2,1);
+        }
+    .slide-leave-active {
+        transition: all .3s cubic-bezier(0.4,0.0,1,1);
+    }
+    .slide-enter, .slide-leave-active {
+        transform: translateX(-210px);
+    }
+    /*上面这些会重复，先这样*/
     .icon {
         font-weight: 300;
         width: 20px;
@@ -72,13 +75,10 @@
         width: 210px;
         background-color: #eeeeee;
         z-index: 50;
-        /*will-change: transform;*/
-       /*transform: translateX(-210px);*/
-        /*transition: transform .3s cubic-bezier(0.0,0.0,0.2,1);*/
     }
     
-    .open {     
-         transform: translateX(0);
+    .close {     
+         transform: translateX(-210px);
     }
     
     .list {

@@ -6,6 +6,8 @@ export const HIDE_PROGRESS = 'HIDE_PROGRESS'
 export const SHOW_PROGRESS = 'SHOW_PROGRESS'
 //侧边栏状态
 export const CHANGE_SIDE = 'CHANGE_SIDE'
+export const SIDE_RUN = 'SIDE_RUN'
+export const MINSIDE_CLOSE = 'MINSIDE_CLOSE'
 //dropDown
 export const OPEN_DROP = 'OPEN_DROP'
 export const CLOSE_DROP = 'CLOSE_DROP'

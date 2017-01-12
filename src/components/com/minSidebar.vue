@@ -1,27 +1,29 @@
 <template>
     <div>
-        <div class="min-side">
-            <!--这里的动画效果就应该用transition来弄-->
-            <div class="top" @click="closeMinSide">
-                <div class="sitename">Josephine</div>
-                <div class="back"><i class="material-icons">keyboard_arrow_left</i></div>
-            </div>
-            <div class="list">
-                <div class="links">
-                    <router-link class="link" to="{name: 'as'}"><i class="material-icons icon">home</i>Articles</router-link>
-                    <router-link class="link" to="{name: 'ts'}"><i class="material-icons icon">apps</i>Tags</router-link>
-                    <router-link v-if="login" class="link" to="'/u/' + 345"><i class="material-icons icon">account_circle</i>Profile</router-link>
-                    <router-link class="link" to="{name: 'aa'}"><i class="material-icons icon">headset</i>About</router-link>
+        <transition name="slide" @afterEnter="handleTrans" @afterLeave="handleTrans">
+            <div class="min-side" v-if="!sidebar.size && sidebar.minside">
+                <!--这里的动画效果就应该用transition来弄-->
+                <div class="top" @click="closeMinSide">
+                    <div class="sitename">Josephine</div>
+                    <div class="back"><i class="material-icons">keyboard_arrow_left</i></div>
+                </div>
+                <div class="list">
+                    <div class="links">
+                        <router-link class="link" to="{name: 'as'}"><i class="material-icons icon">home</i>Articles</router-link>
+                        <router-link class="link" to="{name: 'ts'}"><i class="material-icons icon">apps</i>Tags</router-link>
+                        <router-link v-if="login" class="link" to="'/u/' + 345"><i class="material-icons icon">account_circle</i>Profile</router-link>
+                        <router-link class="link" to="{name: 'aa'}"><i class="material-icons icon">headset</i>About</router-link>
+                    </div>
+                </div>
+                <div class="copyRight">
+                    <div>博客源码</div>
+                    <div>©2017 Josephine</div>
+                    <!--这个时间要改一改-->
                 </div>
             </div>
-            <div class="copyRight">
-                <div>博客源码</div>
-                <div>©2017 Josephine</div>
-                <!--这个时间要改一改-->
-            </div>
-        </div>
-        <!--<div class="modal" v-if="minSide" @click="closeMinSide"></div>-->
-        <!--这个modal可以弄成伪元素啊，以后再改-->
+            <!--这个modal可以弄成伪元素啊，以后再改-->
+        </transition>
+        <div class="modal" v-if="!sidebar.size && sidebar.minside" @click="closeMinSide"></div>
     </div>
 
 </template>
@@ -30,24 +32,30 @@
     export default {
         computed: {
             ...mapGetters({
-               // minSide: 'getMinSide',
+                sidebar: 'getSidebar',
                 login: 'getLogState'
             })
         },
         methods: {
-            sideHide() {
-                this.$store.dispatch('side', {
-                    bigWidth: this.side.bigWidth,
-                    sideHide: !this.side.sideHide
-                })
-            },
             closeMinSide() {
-                this.$store.dispatch('minSideClose')
+                this.$store.commit('MINSIDE_CLOSE')
+            },
+            handleTrans() {
+                this.$store.commit('SIDE_RUN', false)
             }
         }
     }
 </script>
 <style scoped>
+        .slide-enter-active {
+        transition: all .3s cubic-bezier(0.0,0.0,0.2,1);
+        }
+    .slide-leave-active {
+        transition: all .3s cubic-bezier(0.4,0.0,1,1);
+    }
+    .slide-enter, .slide-leave-active {
+        transform: translateX(-300px);
+    }
     .min-side {
         position: fixed;
         /*上面一会儿吧body的高度改为100%*/
@@ -59,9 +67,6 @@
         background-color: #ffffff;
         z-index: 500;
         box-shadow: 0 16px 24px 2px rgba(0,0,0,0.14), 0 6px 30px 5px rgba(0,0,0,0.12), 0 8px 10px -5px rgba(0,0,0,0.4); 
-        transform: translateX(-300px);
-        /*这里当他的css文件没有加载出来的时候他会闪一下，先记着这个问题，以后再说*/
-        transition: transform .3s cubic-bezier(0.0,0.0,0.2,1);
     }
     .top {
         display: flex;

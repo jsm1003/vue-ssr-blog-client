@@ -1,4 +1,6 @@
 import {
+    SIDE_RUN,
+    MINSIDE_CLOSE,
     CHANGE_SIDE,
     START_PROGRESS,
     FINISH_PROGRESS,
@@ -16,8 +18,10 @@ const state = {
         finish: false
     },
     sidebar: {
-        side: true,
-        min: false,
+        side: true,//true代表打开
+        minside: false,//小屏时侧边栏默认关闭
+        size: true,//true表示大尺寸
+        running: false
     },
     gProgressShow: true,
     // autoSide: true, //根据屏幕大小调节侧边栏显示状况
@@ -51,14 +55,22 @@ const actions = {
 }
 
 const mutations = {
-    [CHANGE_SIDE] (state, option) {
-        if(option) {
-        state.min = false
-         state.sidebar.side = !state.sidebar.side
+    [SIDE_RUN] (state, option) {
+        state.sidebar.running = option
+    },
+    [CHANGE_SIDE] (state, {size, running, side}) {
+        if(size) {
+            state.sidebar.side = !state.sidebar.side
+
         } else {
-            state.min = true
-            console.log('还没有做')
+            state.sidebar.minside = !state.sidebar.minside
         }
+        state.sidebar.running = running
+        state.sidebar.size = size
+
+    },
+    [MINSIDE_CLOSE] (state) {
+        state.sidebar.minside = false
     },
     [START_PROGRESS](state) {
         state.gProgress.start = true
@@ -95,7 +107,7 @@ const mutations = {
 }
 
 const getters = {
-    'getSidebar' : state => state.sidebar.side,
+    'getSidebar' : state => state.sidebar,
     'getProgress' : state => state.gProgress ,
     'getGPS' : state => state.gProgressShow ,//不是GPS 是gProgressShow的简写
     'getDrop': state => state.dropDown ,

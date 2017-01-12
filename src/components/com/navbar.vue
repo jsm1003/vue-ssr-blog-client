@@ -64,6 +64,7 @@
         },
         computed: {
              ...mapGetters({
+                sidebar: 'getSidebar',
                 user: 'getUserInfo',
                 login: 'getLogState',
                 dropItem: 'getDropItem'
@@ -98,9 +99,10 @@
             },
             handleSide() {
                 if (typeof window !== 'undefined') {
-                    var big = true
-                    big = window.innerWidth > 750 ? true : false
-                    this.$store.commit('CHANGE_SIDE', big)
+                    if(this.sidebar.running) return//防止点击次数过快,体验还是不行，要么就是直接在docuemnt上监听点击事件，加入防抖
+                    var size = true 
+                    size = window.innerWidth > 750 ? true : false
+                    this.$store.commit('CHANGE_SIDE', {size:size,running:true} )
                 }
                 //如果是其他页面，可以添加一个判断来判定是否打开minside
                 // this.$store.dispatch('handleSide')
@@ -109,7 +111,6 @@
                 this.$store.dispatch('logout')
             },
             drop() {
-                //这里还有一个问题，就是在打开dropdown的状态下再点击他没有反应，而我希望他关闭dropdown,这个小问题暂时先不管呢
                 const el = this.$refs.account
                 this.$store.commit('TOGGLE_DROP', { el, data: this.dropData })
             }

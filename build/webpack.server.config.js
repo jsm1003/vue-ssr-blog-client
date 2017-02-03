@@ -24,8 +24,7 @@ const config = merge(base, {
     },{
       test: /\.vue$/,
       loader: 'vue-loader'
-    }
-    ]
+    }]
   },
   plugins: [
     new webpack.DefinePlugin({

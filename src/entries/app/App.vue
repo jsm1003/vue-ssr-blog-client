@@ -33,13 +33,8 @@
       minSidebar,
       dropDown
     },
-    data() {
-      return {
-      }
-    },
     computed: {
     ...mapGetters({
-        // side: 'side',
         gProgress: 'getProgress',
         gPS: 'getGPS',
         dropDown: 'getDrop'
@@ -70,7 +65,6 @@
         },
       deep: true
       }
-
     },
       mounted () {
         if(typeof window !== 'underfined') {
@@ -83,10 +77,6 @@
   }
 
 </script>
-<!--<style src="assets/css/index.css"></style>
-<style src="assets/css/article.css"></style>
-<style src="assets/css/atom-onelight.css"></style>
-<style src="assets/css/nprogress.css"></style>-->
 <style>
   @import "~assets/css/index.css";
   @import "~assets/css/article.css";

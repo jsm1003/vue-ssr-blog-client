@@ -5,10 +5,6 @@ const clientConfig = require('./webpack.client.config')
 const serverConfig = require('./webpack.server.config')
 
 module.exports = function setupDevServer (app, opts) {
-  // modify client config to work with hot middleware
-  // clientConfig.entry.app = ['webpack-hot-middleware/client', clientConfig.entry.app]
-  // clientConfig.entry.admin = ['webpack-hot-middleware/client', clientConfig.entry.admin]
-  // clientConfig.entry.login = ['webpack-hot-middleware/client', clientConfig.entry.login]
   Object.keys(clientConfig.entry).forEach(function(name) {
     clientConfig.entry[name] = ['webpack-hot-middleware/client'].concat(clientConfig.entry[name])
 })

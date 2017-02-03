@@ -12,10 +12,4 @@ if (process.env.NODE_ENV === 'production') {
 
 module.exports = {
   loaders: utils.cssLoaders(options),
-  //preserveWhitespace: false,
-  // postcss: [
-  //   require('autoprefixer')({
-  //     browsers: ['last 3 versions']
-  //   })
-  // ]
 }

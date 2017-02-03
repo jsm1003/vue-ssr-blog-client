@@ -3,7 +3,6 @@
     <h1 class="title">{{ article.title }}</h1>
     <div class="entry-meta left">
       <img class="auth-img" src="~assets/img/auth.png">
-      <!--为什么图片资源不跟着过来了呢？-->
       <span class="auth-name">{{ article.authname }}</span>
       <span class="bull">·</span>
       <time class="time">{{article.createdAt | timeAgo}}</time>
@@ -103,9 +102,6 @@ export default {
     line-height: 1.7;
     font-weight: 400;
   }
-  
-
-
   
   .float {
     position: fixed;

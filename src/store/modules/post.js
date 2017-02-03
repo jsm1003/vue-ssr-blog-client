@@ -28,9 +28,10 @@ const actions = {
     async ['receiveTopics']({commit}, config) {
         var {data: {topics}} = await api.get('/topics', config)
         var topic = {
-            list: topics[1].map(({objectId, title, content, authname, authId}) => {
-                return { objectId, title, content, authname, authId }
-            }),
+            list:topics[1],
+            //  topics[1].map(({objectId, title, content, authname, authId, }) => {
+            //     return { objectId, title, content, authname, authId }
+            // }),
             haveNext: topics[0] > config.page * config.limit
         }
         if (config.id) {

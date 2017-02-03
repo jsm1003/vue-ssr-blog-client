@@ -7,7 +7,7 @@ export default context => {
   // call prefetch hooks on components matched by the route
   const s = isDev && Date.now()
 
-    const matchedComponents = router.getMatchedComponents()
+  const matchedComponents = router.getMatchedComponents()
 
   // no matched routes
   if (!matchedComponents.length) {
@@ -20,7 +20,7 @@ export default context => {
       return component.preFetch(store)
     }
   })).then(() => {
-    console.log(`data pre-fetch: ${Date.now() - s}ms`)
+   isDev && console.log(`data pre-fetch: ${Date.now() - s}ms`)
     // set initial store on context
     // the request handler will inline the state in the HTML response.
     context.initialState = store.state

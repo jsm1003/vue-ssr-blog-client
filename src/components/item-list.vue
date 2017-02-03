@@ -2,23 +2,19 @@
   <div class="myposts">
     <div class="item" v-for="item in topic.list">
       <h2 class="item-title">
-        <router-link :to="'/a/' + item.objectId ">{{ item.title }}</router-link>
+        <router-link :to="'/a/' + item.objectId "><h1>{{ item.title }}</h1></router-link>
       </h2>
-      <div class="item-people">
-        <div class="answer-meta">
           <div class="author-info">
-            <img class="author-img" src="../assets/img/auth.jpg"></img>
-            <div class="author-content">
-              <div class="author-name">{{ item.authname }}</div>
-              <div class="author-badge">前端开发</div>
-            </div>
+              <!--<div class="author-name">{{ item.authname }}</div>-->
+              <span class="auth-name">{{ item.authname }}</span>
+              <span class="bull">·</span>
+              <time class="time">{{item.createdAt | timeAgo}}</time>
           </div>
-        </div>
-      </div>
       <div class="item-content">
         <span class="RichText" v-text="cutStr(item.content)"></span>
         <router-link class="readmore" :to="'/a/' + item.objectId ">阅读全文</router-link>
       </div>
+
     </div>
     <div class="more-item">
       <a v-if="topic.haveNext" @click="loadMore" href="javascript:;">more</a>
@@ -53,6 +49,12 @@
     /*animation: slideContent .3s cubic-bezier(0.0,0.0,0.2,1);*/
     /*初次加载向上滑动特效*/
   }
+  h1 {
+    color: #333;
+    font-size: 22px;
+    line-height: 1.5;
+    font-weight: 400;
+  }
   .item {
     box-sizing: border-box;
     text-align: left;
@@ -74,26 +76,9 @@
   .item-title a {
     color: inherit;
   }
-  .item-people {
-    margin-top: 2px;
-    font-size: 15px;
-    line-height: 1.6;
-    color: #555;
-  }
-  .answer-meta {
-    margin-top: 10px;
-  }
-  .author-img {
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-  }
+
   .author-info {
-    margin-bottom: 12px;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
+    margin-bottom: 4px;
   }
   .author-name {
     font-size: 15px;
@@ -123,37 +108,4 @@
     font-size: 14px;
     color: #9e9e9e;
   }
-  
-
-  /*@media only screen and (min-width: 440px) {
-    .myposts {
-      width: calc((100% + 210px) - 2*16px);
-    }
-  }
-  
-  @media only screen and (min-width: 1070px) {
-    .myposts {
-      width: calc((100% + 210px)*8/10 - 24px);
-    }
-  }
-  
-  @media only screen and (min-width: 1280px) {
-    .myposts {
-      width: calc((100% + 210px)*2/3 - 24px);
-    }
-  }
-  
-  @media only screen and (min-width: 1070px) {
-    .nWGHWc .t1KkGe {
-      max-width: 1084px;
-      width: calc(80% - 24px);
-    }
-  }
-  
-  @media only screen and (min-width: 1280px) {
-    .nWGHWc .t1KkGe {
-      max-width: 1084px;
-      width: calc(66.66% - 24px);
-    }
-  }*/
 </style>

@@ -2,9 +2,7 @@
     <div class="wrap">
         <e-tag :tags="tags" :allTags="allTags" :id="draft.objectId" @addTag="addTag" @removeTag="removeTag" />
         <div class="title"><input class="tag-input" :value="draft.title" @input="titling">标题</div>
-        <!--<div data-loader="arrow-circle"></div>-->
         <i class="material-icons icon">cached</i>
-
         <div class="edit">
             <div class="inputer">
                 <textarea :value="draft.content" @input="contenting"></textarea>

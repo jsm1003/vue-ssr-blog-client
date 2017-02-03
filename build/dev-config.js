@@ -20,15 +20,15 @@ Object.keys(entries).forEach(function (entry) {
 })
 
 module.exports = {
-    // module: {
-    //     rules: [{
-    //         test: /\.(png|jpg|gif|svg)$/,
-    //         loader: 'file-loader',
-    //         options: {
-    //             name: '[name].[hash:7].[ext]'
-    //         }
-    //     }]
-    // },
+    module: {
+        rules: [      {
+        test: /\.(jpg|png|gif|eot|svg|ttf|woff|woff2)$/,
+        loader: 'url-loader',
+        options: {
+          name: '[name].[hash:7].[ext]'
+        }
+      }]
+    },
     plugins: plugins,
     
 }

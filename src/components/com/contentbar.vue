@@ -2,10 +2,10 @@
   <div class="mycontent" :class="{oop: transitionEnd}">
       <transition name="fade" mode="out-in">
         <!--这里也可以动态绑定-->
-        <keep-alive include="tags,articles,resume">
+        <!--<keep-alive>-->
           <router-view></router-view>
           <!--貌似这里的route-view可以动态绑定class，先单独出来看看效果-->
-        </keep-alive>
+        <!--</keep-alive>-->
       </transition>
   </div>
 </template>
@@ -26,7 +26,8 @@
     methods: {
       moveStyle(e) {
         let node = e.target
-        if(node !== this.$el) return//防止其他动画效果影响
+        //if(node !== this.$el) return//防止其他动画效果影响
+        if(node !== e.currentTarget) return//这个比上面那个快一些，因为this还得一层一层的去找，不知道这样想对不对
         this.transitionEnd = !this.transitionEnd
         node.removeAttribute('style')
         this.$store.commit('SIDE_RUN', false)
@@ -51,42 +52,20 @@
 </script>
 <style scoped>
   .mycontent {
-    border: 1px solid red;
     display: flex;
     flex-direction: column;
     align-items: center;
     /*整体使用flex布局*/
     margin-top: 64px;
     box-sizing: border-box;
-    /*will-change: margin;*/
-    /*transition: margin .3s cubic-bezier(0.0,0.0,0.5,1);*/
   }
-
-  /*.big {
-    margin-left: 0;
-  }
-  .bighandle {
-    transition: margin .3s cubic-bezier(0.0,0.0,0.5,1);
-    margin-left: 0;
-  }*/
-  /*.mymain {
-    margin: 0 auto;
-    max-width: 800px;
-    padding: 0 12px;
-    border: 1px solid red;
-    text-align: center;
-  }*/
-
-  
   .fade-enter-active,
   .fade-leave-active {
     transition: all .3s ease;
   }
-  
   .fade-enter {
     opacity: 1;
   }
-  
   .fade-leave-active {
     opacity: 0;
   }
@@ -97,7 +76,7 @@
     }
   }
     @media only screen and (min-width: 750px) {
-    .oop {
+    .mycontent.oop {
       margin-left: 210px;
     }
   }

@@ -34,10 +34,6 @@ module.exports = function setupDevServer (app, opts) {
     const fs = devMiddleware.fileSystem
 
     //在这里判断文件是否在内存中
-    // Object.keys(clientConfig.entry).forEach(function(name){
-    //   console.log(name)
- 
-    // })
     const appPath = path.join(clientConfig.output.path, 'app.html')//client ssr 页面
     if (fs.existsSync(appPath)) {
       const index = fs.readFileSync(appPath, 'utf-8')

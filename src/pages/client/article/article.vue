@@ -2,11 +2,11 @@
   <div class="wraper">
     <h1 class="title">{{ article.title }}</h1>
     <div class="entry-meta left">
-      <img class="auth-img" src="../../../assets/img/auth.png">
+      <img class="auth-img" src="~assets/img/auth.png">
       <!--为什么图片资源不跟着过来了呢？-->
       <span class="auth-name">{{ article.authname }}</span>
       <span class="bull">·</span>
-      <time class="time">3个月前</time>
+      <time class="time">{{article.createdAt | timeAgo}}</time>
     </div>
     <section class="article" v-html="article.content"></section>
       <router-link v-if="logState" class="float" :to="{name: 'newDraft'}" title="撰写新文章">

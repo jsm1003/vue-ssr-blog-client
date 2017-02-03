@@ -6,14 +6,14 @@
     </div>
 </template>
 <script>
-    import { cas } from '~assets/js/canvas'
+    import { cas } from 'assets/js/canvas'
     export default {
         mounted() {
             cas()
         }
     }
 </script>
-<style src="~assets/css/login.css"></style>
+<!--<style src="~assets/css/login.css"></style>-->
 <style scoped>
 .main {
     z-index: 50;

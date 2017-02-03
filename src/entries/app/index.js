@@ -8,8 +8,8 @@ store.replaceState(window.__INITIAL_STATE__)
 app.$mount('#app')
 
 
-// service worker
-if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
-  //navigator.serviceWorker.register('/service-worker.js')
-  //先注释起来
-}
+// service worker先不搞了
+// if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
+//   navigator.serviceWorker.register('/service-worker.js')
+//   //先注释起来
+// }

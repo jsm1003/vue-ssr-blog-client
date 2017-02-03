@@ -3,7 +3,7 @@
         <div class="header">
             <div class="user">
                 <div class="avatar">
-                    <img class="avatar-p" src="../../../assets/img/auth.jpg" alt="" />
+                    <img class="avatar-p" src="~assets/img/auth.jpg" alt="" />
                     <!--图片引用这里还是不爽啊-->
                 </div>
                 <div class="info">
@@ -12,8 +12,10 @@
                 </div>
             </div>
         </div>
-        <div class="main">
-            <div class="item" v-for="item in resume.list">
+        <div class="main" ref="main">
+            <div class="col mcol" ref="col" @click="test">每一行</div>
+            <div class="col mcol">每一列</div>
+            <!--<div class="item mcol" v-for="item in resume.list">
                 <div class="heading">{{ item.type }}</div>
                 <ul class="detail">
                     <li class="list" v-for="i in item.item">
@@ -24,37 +26,55 @@
                         <div class="list-item" v-else>{{i}}</div>
                     </li>
                 </ul>
-            </div>
+            </div>-->
         </div>
     </div>
 </template>
 <script>
     import api from '~src/api'
+    import { on, off } from '~src/utils'
+    import throttle from 'lodash/throttle'
     import { mapGetters } from 'vuex'
     function fetchResumeData(store) {
         store.dispatch('getResume')
     }
     export default {
-        name: 'resume',
+        name: 'resumeeee',
         preFetch: fetchResumeData,
         computed: {
             ...mapGetters({
                 resume: 'getResume'
             })
         },
+        methods: {
+            go() {
+               this.$refs.main.appendChild(this.$refs.col)
+            },
+            test() {
+                console.log('keyi?')
+            }
+        },
+        // render (createElement) {
+        //     return createElement('h2')
+        // },
         mounted() {
-            // var {data} = await api.get('/resume')
-            // console.log('>>', res)
             fetchResumeData(this.$store)
-        }
+            this.$watch('resume.list', () => {
+                this.go()
+            })
+            //unwatch()
+        },
+        // updated () {
+        //     console.log(this.resume)
+        // }
     }
 </script>
 <style scoped>
 .resume {
-    /*border: 1px solid red;*/
+    
 }
   .header {
-    background: url('../../../assets/img/winter.jpg') no-repeat;
+    background: url(~assets/img/winter.jpg) no-repeat;
     background-size: cover;
     width: 100%;
     /*max-width: 850px;*/
@@ -66,7 +86,7 @@
 }
 .header::after {
     display: block;
-    background: url('../../../assets/img/snow.png');
+    background: url(~assets/img/snow.png);
     content: '';
     transform-origin:left top;
     transform: scale(1.5);
@@ -84,7 +104,7 @@
 }
 .user::after {
     display: block;
-    background:url('../../../assets/img/gradient-bg.png') repeat-x;
+    background:url(~assets/img/gradient-bg.png) repeat-x;
     content: '';
     width: 100%;
     height: 84px;
@@ -140,14 +160,24 @@
     font-family: 'Hiragino Sans GB','Microsoft YaHei',Arial,sans-serif;
 }
 .main {
+    position: relative;
     margin-top: 50px;
     display: flex;
-    flex-wrap: wrap;
+    /*flex-wrap: wrap;*/
     /*第一行在上方*/
-
+}
+.col {
+    border: 1px solid red;
+    box-sizing: border-box;
+}
+.mcol {
+    max-width: 530px;
+}
+.mcol+.mcol {
+    margin-left: 24px;
 }
 .item {
-    margin-left: 20px;
+    /*margin-left: 20px;*/
     margin-top: 20px;
     /*上面的是临时的*/
     background: #ffffff;
@@ -212,5 +242,21 @@
     width: calc((100% + 210px)*2/3 - 24px);
     max-width: 1084px;
     }
+}
+/*瀑布流每一列的宽度*/
+@media only screen and (min-width: 440px){
+ .col{
+    width: calc((100% + 210px) - 2*16px);
+}
+}
+@media only screen and (min-width: 1070px){
+ .col{
+    width: calc(((100% + 210px - 24px)*4/10) - 24px);
+}
+}
+@media only screen and (min-width: 1280px){
+ .col{
+    width: calc(((100% + 210px - 24px)*4/12) - 24px);
+}
 }
 </style>

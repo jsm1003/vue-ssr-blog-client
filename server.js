@@ -1,6 +1,8 @@
-process.env.VUE_ENV = 'server'
+//process.env.VUE_ENV = 'server'
 const isProd = process.env.NODE_ENV === 'production'
-
+const serverInfo =//不知道是干什么的
+  `express/${require('express/package.json').version} ` +
+  `vue-server-renderer/${require('vue-server-renderer/package.json').version}`
 const fs = require('fs')
 const path = require('path')
 const express = require('express')
@@ -43,7 +45,7 @@ function createRenderer(bundle) {
   return require('vue-server-renderer').createBundleRenderer(bundle, {
     cache: require('lru-cache')({
       max: 1000,
-      maxAge: 1000 * 60 * 15
+      maxAge: 1000 * 60 * 15//15分钟
     })
   })
 }
@@ -60,9 +62,9 @@ function parseIndex(template) {
 const serve = (path, cache) => express.static(resolve(path), {
   maxAge: cache && isProd ? 60 * 60 * 24 * 30 : 0
 })
-//app.use('/service-worker.js', serve('./dist/server/service-worker.js'))这一行到底干什么用的？删了也可以？
 app.use(compression({ threshold: 0 }))
 app.use(favicon('./src/assets/img/logo-48.png'))
+//app.use('/service-worker.js', serve('./dist/service-worker.js'))离线缓存？先不用了
 app.use('/manifest.json', serve('./manifest.json'))
 app.use('/server', serve('./dist/server'))
 app.use('/static', serve('./dist/static'))
@@ -72,7 +74,8 @@ app.get(['/', '/articles', '/a/:id', '/a/:id/edit/', '/u/haha', '/u/:id/articles
     return res.end('waiting for compilation... refresh in a moment.')
   }
 
-  res.setHeader("Content-Type", "text/html");
+  res.setHeader("Content-Type", "text/html")
+  res.setHeader("Server", serverInfo)
   var s = Date.now()
   const context = { url: req.url }
   const renderStream = renderer.renderToStream(context)

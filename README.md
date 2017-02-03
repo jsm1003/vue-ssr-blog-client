@@ -63,3 +63,11 @@ api服务器地址https://github.com/ZinCode/vue-ssr-blog-api
 7. alert（不能用toast的样式）
 
 #### 样式这一块，等做完后吧公共样式分离出来
+
+
+contarin: layout style;
+https://developer.mozilla.org/zh-CN/docs/Web/CSS/contain
+
+G+是通过js计算每一列的宽度，再确定需要几列，而每一列的宽度是由响应式的css来控制的
+
+当你写一个项目的时候如果什么都用插件，那你就好比一个组装工人，里面每一项的具体实现你都不从而知，我认为应该是尽自己所能的少用各种插件，

@@ -1,4 +1,4 @@
-//process.env.VUE_ENV = 'server'
+process.env.VUE_ENV = 'server'
 const isProd = process.env.NODE_ENV === 'production'
 const serverInfo =//不知道是干什么的
   `express/${require('express/package.json').version} ` +

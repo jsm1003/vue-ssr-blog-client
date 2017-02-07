@@ -1,4 +1,3 @@
-import 'es6-promise/auto' //增加垫片
 import { app, store } from './app'
 
 // prime the store with server-initialized state.

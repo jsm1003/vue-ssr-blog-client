@@ -57,6 +57,7 @@
     align-items: center;
     /*整体使用flex布局*/
     margin-top: 64px;
+    margin-bottom: 20px;
     box-sizing: border-box;
   }
   .fade-enter-active,

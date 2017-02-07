@@ -21,7 +21,11 @@ const state = {
         haveNext: 0,
         page: 1
     },
-    resume: {}
+    resume: {
+        basicInfo:{},
+        info: {},
+        list: []
+    }
 }
 
 const actions = {

@@ -11,7 +11,7 @@
                     <div class="links" @click="closeMinSide">
                         <router-link class="link" :to="{name: 'as'}"><i class="material-icons icon">home</i>Articles</router-link>
                         <router-link class="link" :to="{name: 'ts'}"><i class="material-icons icon">apps</i>Tags</router-link>
-                        <router-link v-if="login" :class="link" to="'/u/' + 345"><i class="material-icons icon">account_circle</i>Profile</router-link>
+                        <router-link v-if="login" class="link" to="'/u/' + 345"><i class="material-icons icon">account_circle</i>Profile</router-link>
                         <router-link class="link" :to="{name: 'aa'}"><i class="material-icons icon">headset</i>About</router-link>
                     </div>
                 </div>

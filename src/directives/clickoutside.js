@@ -9,10 +9,9 @@ function directive (el, binding, v) {
 
 function handleClick(e) {
     if(!aa.contains(e.target)) {
-        //e.preventDefault()
-        //e.stopPropagation()
+        e.preventDefault()
+        e.stopPropagation()
         store.commit('CLOSE_DROP')
-        return false
     }
 }
 

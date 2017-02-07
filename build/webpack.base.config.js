@@ -6,7 +6,7 @@ var baseConfig = {
   performance: { hints: false },//什么意思
   devtool: '#source-map',
   entry: {
-    vendor: ['vue', 'vue-router', 'vuex', 'lru-cache', 'axios', 'vuex-router-sync']
+    vendor: ['vue', 'vue-router', 'vuex', 'vuex-router-sync','axios']
   },
   resolve: {
     extensions: ['.js', '.vue'],
@@ -36,13 +36,12 @@ var baseConfig = {
     rules: [
       {
         test: /\.js$/,
-        // enforce: 'pre',
         loader: 'babel-loader',
         exclude: /node_modules/
         //不编译包文件夹下的文件
       },
       {
-        test: /\.json$/,
+        test: /\.json$/,//需要json-loader吗？
         loader: 'json-loader'
       },
     ]
@@ -50,7 +49,7 @@ var baseConfig = {
   plugins: [
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
-      'process.env.VUE_ENV': '"client"'
+     // 'process.env.VUE_ENV': '"client"'
     })
   ]
 }

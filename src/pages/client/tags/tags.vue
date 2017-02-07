@@ -1,9 +1,16 @@
 <template>
-  <div id="tag-wrap">
+  <div class="tags">
+
+
     <h2>标签列表</h2>
+    <div class="tag-wrap">
+      <div class="tags-inner">
     <div class="tag" v-for="tag in tags">
-      <div>{{ tag.name }}</div>
-      <router-link :to="'/t/' + tag.objectId">链接在这里</router-link>
+        <div>{{ tag.name }}</div>
+        <router-link :to="'/t/' + tag.objectId">链接在这里</router-link>
+      </div>
+      </div>
+  
     </div>
   </div>
 </template>
@@ -11,25 +18,115 @@
   import api from '~src/api'
   import { mapGetters } from 'vuex'
   const fetchTagsData = async (store) => {
-        return store.dispatch('getAllTags')
+    return store.dispatch('getAllTags')
   }
   export default {
     name: 'tags',
     preFetch: fetchTagsData,
     computed: {
         ...mapGetters({
-            tags: 'getAllTags'
-        })
+        tags: 'getAllTags'
+      })
     },
-     mounted() {
-       fetchTagsData(this.$store)
+    mounted() {
+      fetchTagsData(this.$store)
     }
   }
+
 </script>
-<style scopoed> 
-  #tag-wrap {
-    border: 1px solid red;
+<style scopoed>
+  .tags {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /*上面一行暂时先加上*/
   }
+  
+  .tag-wrap {
+    border: 1px solid red;
+    display: inline-block;
+    text-align: left;
+    position: relative;
+  }
+  
+  @media (min-width: 440px) {
+    .tag-wrap {
+      width: 95%;
+    }
+  }
+  
+  @media (min-width: 500px) {
+    .tag-wrap {
+      width: 92%;
+    }
+  }
+  
+  @media (min-width: 650px) {
+    .tag-wrap {
+      width: 85%;
+    }
+  }
+  
+  @media (min-width: 440px) {
+    .tag-wrap {
+      margin: 0 auto;
+      padding: 0;
+    }
+  }
+  
+  @media only screen and (min-width: 1070px) {
+    .tag-wrap {
+      padding: 0 12px;
+    }
+  }
+  
+  @media only screen and (min-width: 1024px) {
+    .tag:nth-child(4n+1){
+      margin-left: 0;
+    }
+  }
+  
+  @media only screen and (min-width: 1024px) {
+    .tag:nth-child(2n+1){
+      margin-left: 24px;
+    }
+  }
+  
+  @media only screen and (min-width: 1070px) {
+    .tag:nth-child(4n+1) {
+      margin-left: 0;
+    }
+  }
+  
+  @media only screen and (min-width: 1070px) {
+    .tag:nth-child(2n+1) {
+    margin-left: 24px;
+  }
+}
+
+  @media only screen and (min-width: 1024px) {
+    .tag {
+      margin-left: 24px;
+      margin-top: 24px;
+      max-width: 253px;
+      width: calc(25% - 18px);
+    }
+  }
+  
+  @media only screen and (min-width: 1070px) {
+    .tag {
+      margin-left: 24px;
+      margin-top: 24px;
+      max-width: 253px;
+      width: calc(25% - 18px);
+    }
+  }
+  
+  .tag:nth-child(2n+1) {
+    margin-left: 0;
+  }
+  
   .tag {
     display: inline-block;
     /*box-sizing: border-box;*/
@@ -37,39 +134,4 @@
     position: relative;
     cursor: pointer;
   }
-
-@media only screen and (min-width: 440px){
-  #tag-wrap {
-    width: calc((100% + 210px) - 2*16px);
-    padding: 0 16px;
-  }
-  .tag {
-    /*margin-left: 16px;*/
-    margin-left: 0;
-    margin-top: 16px;
-    max-width: 257px;
-    width: 220px;
-    width: calc(50% - 8px);
-  }
-}
-@media only screen and (min-width: 1070px){
-  #tag-wrap {
-    width: calc((100% + 210px)*8/10 - 24px);
-    padding: 0 12px;
-  } 
-  /*.tag:nth-child(4n+1) {
-    margin-left: 0;
-  }*/
-  .tag{
-    margin-left: 24px;
-    margin-top: 24px;
-    max-width: 253px;
-    width: calc(25% - 18px);
-  }
-}
-      @media only screen and (min-width: 1280px){
-  #tag-wrap {
-    width: calc((100% + 210px)*2/3 - 24px);
-    }
-}
 </style>

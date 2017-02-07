@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import store from '~src/store'
-import router from '~src/router'
+import router from '~src/router/app'
 import { sync } from 'vuex-router-sync'
 import directives from '~src/directives'
 import * as filters from '~src/filters'

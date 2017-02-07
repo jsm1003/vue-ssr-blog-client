@@ -47,16 +47,16 @@ Object.keys(entries).forEach(function (entry) {
     template: `src/template/${entry}.html`,
     inject: true,
     //下面这些东西是什么？先不加呢
-    minify: {
-      removeComments: true,
-      collapseWhitespace: true,
-      removeAttributeQuotes: true
-    }
+    // minify: {
+    //   removeComments: true,//删除注释
+    //   collapseWhitespace: true,
+    //   removeAttributeQuotes: true//移除属性的引号
+    // }
   }))
 })
 
 module.exports = {
-    devtool:false,
+   // devtool:,//原来是false
   module: {
     rules: [{
       test: /\.(jpg|png|gif|eot|svg|ttf|woff|woff2)$/,

@@ -8,7 +8,7 @@ Vue.use(VueRouter)
 
 const router = new VueRouter({
     mode: 'history',//这里可以不用history模式
-    base: __dirname,
+   // base: __dirname,
     routes:[
         //用户登陆页
         {path: '/signin', component: signin},

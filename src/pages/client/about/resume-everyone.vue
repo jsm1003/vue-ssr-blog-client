@@ -94,7 +94,6 @@
 <style scoped>
     @import '~assets/css/FontAwesome.css';
     .header {
-        background-size: cover;
         width: 100%;
         padding-top: 20%;
         /*背景图片自适应大小小技巧*/
@@ -168,11 +167,11 @@
     }
     
     article.first {
-        padding-right: 10px;
+        /*padding-right: 10px;*/
     }
     
     article.last {
-        padding-left: 10px;
+        /*padding-left: 10px;*/
     }
     
     .authname {
@@ -235,20 +234,26 @@
     
     .item {
         box-sizing: border-box;
-        margin-top: 20px;
+        /*margin-top: 20px;*/
         /*上面的是临时的*/
         background: #ffffff;
         width: 100%;
         height: auto;
         padding: 24px;
-        border-radius: 2px;
-        box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+        padding: 24px 24px 12px;
+        /*border-radius: 2px;*/
+        /*box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);*/
     }
     
     .resume {
+        /*margin: 0 -16px;*/
+        transform: translateY(-60px);
         width: 100%;
+        background-color: #ffffff;
     }
-    
+    body {
+        background-color: #ffffff;
+    }
     @media (min-width: 750px) {
         .resume {
             width: 85%;
@@ -277,6 +282,7 @@
     }
     
     .title {
+        /*color: rgba(0, 0, 0, 0.54);*/
         color: teal;
         font: 600 18px Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
         margin-bottom: 8px;

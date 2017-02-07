@@ -24,8 +24,7 @@ Vue.use(VueRouter)
 
 const router = new VueRouter({
   mode: 'history',
-  base: __dirname,
-  //base貌似有没有都可以，没测试出来，尴尬
+  //base: __dirname,//设置路由路径为src/router
   routes: [
     { path: '/', name: 'h', component: articles},
     //主页

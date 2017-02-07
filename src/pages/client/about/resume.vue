@@ -210,6 +210,7 @@
     }
     
     .btn {
+        user-select: none;
         margin: 10px 10px 0 0;
         cursor: pointer;
         font-size: 24px;

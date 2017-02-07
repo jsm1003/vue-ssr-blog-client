@@ -2,20 +2,33 @@
 
 > A Vue.js project with vue 2.0, vue-router and vuex starter kit for server side rendering.
 
-## Build Setup
+## Build Setup（生产环境）
 
 ``` bash
-npm install or yarn install //安装依赖
-npm run build               //webpack打包
-npm start                   //启动服务
+# 安装依赖
+npm install  
+
+# 或者使用yarn
+yarn install
+
+# webpack打包
+npm run build
+
+# 启动服务
+npm start
 ```
 
-## Devlopment Setup
+## Devlopment Setup（开发环境）
 
 ```bash
-npm install or yarn install
+# 安装依赖
+npm install
+
+# 启动服务
 npm run dev
 ```
+
+
 ## 遇到问题？ 
 
  请提交[issue](https://github.com/ZinCode/vue-ssr-blog-client/issues) 或者在gitter聊天室找我[https://gitter.im/josephine-blog/Lobby](https://gitter.im/josephine-blog/Lobby)
@@ -25,6 +38,10 @@ npm run dev
 请最好使用node7.0以上的版本，并在最新的chrome浏览器中预览（该项目开发环境为node7.2, chrome55）
 目前该项目对老版本浏览器的兼容性还没有做好
 api服务器地址https://github.com/ZinCode/vue-ssr-blog-api
+
+## 本项目使用脚手架
+
+[vue多页面ssr脚手架](https://github.com/ZinCode/vue2-multiple-entry-start-kit)
 
 ## 用到的一些技术栈
 

@@ -8,12 +8,17 @@
                         <img class="avatar-p" :src="resume.basicInfo.avatar" alt="avatar" />
                     </div>
                     <div class="info">
-                        <span class="authname">{{resume.basicInfo.name}}</span>
-                        <span class="sign">{{resume.basicInfo.description}}</span>
+                        <div>
+                            <span class="authname">{{resume.basicInfo.name}}</span>
+                            <span class="sign">{{resume.basicInfo.description}}</span>
+                        </div>
+                        <div>
+                            <i class="material-icons btn" @click="drop" ref="moreAboutResume">more_vert</i>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="main" ref="main">
+            <div class="main">
                 <article class="first">
                     <div class="item">
                         <div class="heading">基本信息</div>
@@ -68,12 +73,23 @@
     export default {
         name: 'resume',
         preFetch: fetchResumeData,
+        data() {
+            return {
+                dropData: ['PDF下载', '简历源码', '我的知乎']
+            }
+        },
         computed: {
             ...mapGetters({
-                resume: 'getResume'
+                resume: 'getResume',
+                dropItem: 'getDropItem'
             }),
             bg() {
                 return `url(${this.resume.basicInfo.background})`
+            }
+        },
+         watch: {
+            dropItem() {//感觉这里watch有瑕疵啊？就是重复点击同一个item，按理说他不会触发，但是他触发了。。（我希望的是他触发）
+                this.itemClick()
             }
         },
         methods: {
@@ -83,6 +99,24 @@
             },
             even(list) {
                 return list.filter((i, index) => index % 2 === 0)
+            },
+             drop() {
+                const el = this.$refs.moreAboutResume
+                this.$store.commit('TOGGLE_DROP', { el, data: this.dropData })
+            },
+            itemClick() {
+                 const item = this.dropItem.item
+                  switch (item) {
+                    case 'PDF下载':
+                        window.open('http://oaxfgzulv.bkt.clouddn.com/%E7%8E%8B%E5%B0%8F%E5%8B%87-%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%B8%88.pdf')
+                        break
+                    case '简历源码':
+                        window.open('https://github.com/ZinCode/vue-ssr-blog-client/blob/master/src/pages/client/about/resume-everyone.vue')
+                        break
+                    case '我的知乎':
+                        window.open('https://www.zhihu.com/people/hzimmer')
+                        break
+                }
             }
         },
         beforeMount() {
@@ -159,22 +193,9 @@
     
     .info {
         margin-left: 144px;
+        display: flex;
     }
-    
-    article {
-        width: 50%;
-        box-sizing: border-box;
-    }
-    
-    article.first {
-        /*padding-right: 10px;*/
-    }
-    
-    article.last {
-        /*padding-left: 10px;*/
-    }
-    
-    .authname {
+     .authname {
         display: inline-block;
         font-weight: 500;
         font-size: 30px;
@@ -186,7 +207,16 @@
         cursor: pointer;
         text-decoration: underline;
     }
-    
+     .btn {
+        margin: 10px 10px 0 0;
+        cursor: pointer;
+        font-size: 24px;
+    }
+    article {
+        width: 50%;
+        box-sizing: border-box;
+    }
+   
     @media screen and (max-width: 992px) {
         article {
             width: 100%;
@@ -226,7 +256,6 @@
     }
     
     .main {
-        position: relative;
         margin-top: 34px;
         display: flex;
         flex-wrap: wrap;

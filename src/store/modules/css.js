@@ -24,9 +24,6 @@ const state = {
         running: false
     },
     gProgressShow: true,
-    // autoSide: true, //根据屏幕大小调节侧边栏显示状况
-    // handleSide: true,//true 表示侧边栏打开 false 表示侧边栏关闭
-    // minSide: false, //小屏的时候显示的侧边栏
     dropDown: { //总感觉这里的dropdown组件写的还是不行
         data:[],
         position:{},
@@ -94,8 +91,9 @@ const mutations = {
     [TOGGLE_DROP] (state, {el, data}) {
         const rect = el.getBoundingClientRect()
         state.dropDown.data = data
+        console.log(document.body.scrollTop )
         state.dropDown.position = {
-            top: rect.top + rect.height + 'px',
+            top: rect.top+ document.body.scrollTop  + 'px',
             left: rect.left - 200 + 'px'
         }
         state.dropDown.show = true

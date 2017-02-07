@@ -5,15 +5,15 @@
 ## Build Setup
 
 ``` bash
-npm install
-npm run build
-npm start
+npm install or yarn install //安装依赖
+npm run build               //webpack打包
+npm start                   //启动服务
 ```
 
 ## Devlopment Setup
 
 ```bash
-npm install
+npm install or yarn install
 npm run dev
 ```
 ## 遇到问题？ 
@@ -55,7 +55,7 @@ api服务器地址https://github.com/ZinCode/vue-ssr-blog-api
 
 #### 需要增加的组件
 1. toast
-2. dropdown （已完成）
+2. dropdown （需要更改）
 3. modal
 4. ripple（这个可以不加）
 5. chip

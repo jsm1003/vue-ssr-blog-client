@@ -6,7 +6,6 @@
                     <!--<div class="ripple"></div>-->
                     <i class="material-icons button">menu</i>
                 </div>
-                <!--<div class="searchinfo">-->
                 <div class="title">
                     <div class="logoName">
                         <router-link to="/articles">Josephine</router-link>
@@ -20,7 +19,6 @@
                         <i class="material-icons">search</i>
                     </div>
                     <div class="input">Search</div>
-                    <!--</div>-->
                 </div>
             </div>
             <div class="info">
@@ -41,7 +39,6 @@
                 <div class="item btn" title="登陆" @click="signIn" v-else>
                     <i class="material-icons">account_circle</i>
                 </div>
-                <!--<drop :position="position" :data="dropData" @dropClick="itemClick"></drop>-->
             </div>
         </div>
     </div>
@@ -49,7 +46,6 @@
 <script>
     import api from '~src/api'
     import { mapGetters } from 'vuex'
-    import drop from '~components/drop'
 
     const fetchUserData = (store) => {
         return store.dispatch('getUserData')
@@ -145,21 +141,11 @@
         cursor: pointer;
     }
     .banner .main {
-        /*padding: 8px 30px 8px 10px;*/
-        /*height: 64px;*/
         display: flex;
+        width: 100%;
         align-items: center;
         
     }
-    .searchinfo {
-        /*上面这个标签还没有用*/
-        display: flex;
-        flex-direction: row;
-        flex-shrink: 1;
-        align-items: center;
-        flex-grow: 1;
-    }
-    
     .menu {
         display: flex;
         align-items: center;
@@ -175,7 +161,6 @@
         justify-content: flex-start;
         align-items: center;
         height: 48px;
-        /*width: 190px;*/
         margin-left: 10px;
         font-size: 20px;
     }
@@ -204,14 +189,11 @@
     }
     .search {
         height: 48px;
-        /*上面要用到media*/
         display: flex;
-        flex-grow: 1;
         margin-left: 48px;
         margin-right: 36px;
         cursor: text;
-        /*max-width: 720px; 这里设置max—width不管用？*/
-        width: 720px;
+        width: 100%;
         max-width: 720px;
         border-radius: 3px;
         background: rgba(255,255,255,.15);
@@ -222,6 +204,15 @@
         display: none;
     }
     @media only screen and (max-width: 600px) {
+        .banner, .banner .info {
+            height: 48px;
+        }
+
+        .pageTitle {
+            display: none;
+        }
+    }
+    @media only screen and (max-width: 1024px) {
         .search {
             display: none;
         }
@@ -248,10 +239,5 @@
     .item {
         padding: 0 0 0 15px;
         position: relative;
-    }
-    @media only screen and (min-width: 600px) {
-        .search {
-            height: 40px;
-        }
     }
 </style>

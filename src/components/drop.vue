@@ -33,7 +33,6 @@
         width: 0;
     }
     .fade-enter-active {
-        /*width: 500px;*/
         transition: width .7s;
     }
         .list {

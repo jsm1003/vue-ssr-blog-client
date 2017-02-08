@@ -36,9 +36,10 @@
 
 </script>
 <style scoped>
-div{
-  box-sizing: border-box;
-}
+  div {
+    box-sizing: border-box;
+  }
+  
   .tag-wrap {
     display: flex;
     align-items: center;
@@ -48,11 +49,12 @@ div{
   
   .tags-inner {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     flex-wrap: wrap;
     max-width: 530px;
     width: 100%;
   }
+  
   .item {
     background-color: #ffffff;
     position: absolute;
@@ -61,8 +63,9 @@ div{
     left: 0;
     right: 0;
     border-radius: 0;
-    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.14);
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
   }
+  
   .tag-info {
     position: absolute;
     height: 50px;
@@ -70,9 +73,9 @@ div{
     left: 16px;
     right: 16px;
   }
+  
   .tag-name {
-    /*text-align: center;*/
-    color: rgba(0,0,0,.87);
+    color: rgba(0, 0, 0, .87);
     font-size: 16px;
     line-height: 20px;
     max-height: 40px;
@@ -80,14 +83,16 @@ div{
     text-overflow: ellipsis;
     word-break: break-word;
   }
+  
   .tag-count {
     font-size: 12px;
-    color: rgba(0,0,0,.54);
+    color: rgba(0, 0, 0, .54);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     word-break: break-all;
   }
+  
   @media (min-width: 440px) {
     .tag-wrap {
       width: 95%;
@@ -123,30 +128,35 @@ div{
   }
   
   .tag {
+    margin-left: 10px;
     display: inline-block;
     position: relative;
     cursor: pointer;
     width: calc(50% - 2px);
   }
-.tag::after {
+  
+  .tag::after {
     content: '';
     display: block;
     padding-top: calc(50% + 90px);
     /*自适应高度小技巧*/
-}
-.img-wrap {
-  padding-top: 56.25%;
-  position: relative;
-}
-.tag-img {
-  position: absolute;
-  display: block;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-}
+  }
+  
+  .img-wrap {
+    padding-top: 56.25%;
+    position: relative;
+  }
+  
+  .tag-img {
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+  }
+  
   @media only screen and (min-width: 440px) {
     .tag {
       margin-top: 16px;
@@ -157,16 +167,25 @@ div{
       border-radius: 2px;
     }
   }
-
+  
   @media only screen and (min-width: 1024px) {
     .tag {
+      margin-left: 20px;
       margin-top: 24px;
       max-width: 253px;
       width: calc(25% - 18px);
+    }
+    .tag:nth-child(4n+1) {
+      margin-left: 0;
     }
     .tags-inner {
       max-width: 1084px;
     }
   }
-
+  
+  @media only screen and (max-width: 1024px) {
+    .tag:nth-child(2n+1) {
+      margin-left: 0;
+    }
+  }
 </style>

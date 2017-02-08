@@ -16,7 +16,7 @@ config = merge(config, {
   module: {
     rules: [{
         test: /\.vue$/,
-        enforce: 'pre',
+       // enforce: 'pre',//什么意思
         loader: 'vue-loader',
         options: vueConfig
       },]

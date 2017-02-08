@@ -9,7 +9,7 @@
 <script>
   import itemList from '~components/item-list'
   import { mapGetters } from 'vuex'
-  const fetchListData = (store, config = { page: 1 }) => {
+  const fetchListInTagsData = (store, config = { page: 1 }) => {
     const base = {
       ...config,
       limit: 10,
@@ -27,15 +27,15 @@
         logState: 'getLogState'
       })
     },
-    preFetch: fetchListData,//终于明白prefetch的作用了！
+    preFetch: fetchListInTagsData,//终于明白prefetch的作用了！
     methods: {
       loadMore(page = this.topic.page + 1) {
-        fetchListData(this.$store, { page })
+        fetchListInTagsData(this.$store, { page })
       }
     },
     mounted() {
       //先不考虑list数 < 0 的情况
-      fetchListData(this.$store)
+      fetchListInTagsData(this.$store)
     }
   }
 </script>

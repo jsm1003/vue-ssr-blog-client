@@ -105,7 +105,7 @@ const getters = {
     'getTopics' : state =>  state.topic ,
     'getArticle' : state =>  state.article ,
     'getAllTags' : state =>  state.allTags ,
-    'topicInTag' : stat  => state.topicInTag,
+    'getTopicInTag' : state => state.topicInTag,
     'getResume' : state =>  state.resume
 }
 

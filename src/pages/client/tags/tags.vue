@@ -1,23 +1,24 @@
 <template>
-  <div class="tags">
-
-
-    <h2>标签列表</h2>
-    <div class="tag-wrap">
-      <div class="tags-inner">
-    <div class="tag" v-for="tag in tags">
-        <div>{{ tag.name }}</div>
-        <router-link :to="'/t/' + tag.objectId">链接在这里</router-link>
+  <div class="tag-wrap">
+    <h2 class="tags-inner">标签列表</h2>
+    <div class="tags-inner">
+      <div class="tag" v-for="tag in tags">
+        <router-link class="item" :to="'/t/' + tag.objectId">
+          <div class="img-wrap">
+            <img class="tag-img" src="http://oaxfgzulv.bkt.clouddn.com/cat.jpg" alt="tag">
+          </div>
+          <div class="tag-info">
+            <div class="tag-name">{{tag.name}}</div>
+            <div class="tag-count">几篇文章</div>
+          </div>
+        </router-link>
       </div>
-      </div>
-  
     </div>
   </div>
 </template>
 <script>
-  import api from '~src/api'
   import { mapGetters } from 'vuex'
-  const fetchTagsData = async (store) => {
+  const fetchTagsData = (store) => {
     return store.dispatch('getAllTags')
   }
   export default {
@@ -34,22 +35,59 @@
   }
 
 </script>
-<style scopoed>
-  .tags {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /*上面一行暂时先加上*/
-  }
-  
+<style scoped>
+div{
+  box-sizing: border-box;
+}
   .tag-wrap {
-    border: 1px solid red;
-    display: inline-block;
-    text-align: left;
-    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
   }
   
+  .tags-inner {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 530px;
+    width: 100%;
+  }
+  .item {
+    background-color: #ffffff;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 0;
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.14);
+  }
+  .tag-info {
+    position: absolute;
+    height: 50px;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+  }
+  .tag-name {
+    /*text-align: center;*/
+    color: rgba(0,0,0,.87);
+    font-size: 16px;
+    line-height: 20px;
+    max-height: 40px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+  }
+  .tag-count {
+    font-size: 12px;
+    color: rgba(0,0,0,.54);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-break: break-all;
+  }
   @media (min-width: 440px) {
     .tag-wrap {
       width: 95%;
@@ -70,8 +108,11 @@
   
   @media (min-width: 440px) {
     .tag-wrap {
-      margin: 0 auto;
+      margin: 20px auto 0;
       padding: 0;
+    }
+    .tags-inner {
+      width: 100%;
     }
   }
   
@@ -81,57 +122,51 @@
     }
   }
   
-  @media only screen and (min-width: 1024px) {
-    .tag:nth-child(4n+1){
-      margin-left: 0;
-    }
+  .tag {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    width: calc(50% - 2px);
   }
-  
-  @media only screen and (min-width: 1024px) {
-    .tag:nth-child(2n+1){
-      margin-left: 24px;
-    }
-  }
-  
-  @media only screen and (min-width: 1070px) {
-    .tag:nth-child(4n+1) {
-      margin-left: 0;
-    }
-  }
-  
-  @media only screen and (min-width: 1070px) {
-    .tag:nth-child(2n+1) {
-    margin-left: 24px;
-  }
+.tag::after {
+    content: '';
+    display: block;
+    padding-top: calc(50% + 90px);
+    /*自适应高度小技巧*/
 }
+.img-wrap {
+  padding-top: 56.25%;
+  position: relative;
+}
+.tag-img {
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+}
+  @media only screen and (min-width: 440px) {
+    .tag {
+      margin-top: 16px;
+      max-width: 257px;
+      width: calc(50% - 8px);
+    }
+    .item {
+      border-radius: 2px;
+    }
+  }
 
   @media only screen and (min-width: 1024px) {
     .tag {
-      margin-left: 24px;
       margin-top: 24px;
       max-width: 253px;
       width: calc(25% - 18px);
     }
-  }
-  
-  @media only screen and (min-width: 1070px) {
-    .tag {
-      margin-left: 24px;
-      margin-top: 24px;
-      max-width: 253px;
-      width: calc(25% - 18px);
+    .tags-inner {
+      max-width: 1084px;
     }
   }
-  
-  .tag:nth-child(2n+1) {
-    margin-left: 0;
-  }
-  
-  .tag {
-    display: inline-block;
-    /*box-sizing: border-box;*/
-    border: 1px solid blue;
-    position: relative;
-    cursor: pointer;
-  }
+
 </style>

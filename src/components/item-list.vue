@@ -1,20 +1,20 @@
 <template>
   <div class="myposts">
-    <div class="item" v-for="item in topic.list">
+    <div class="item" v-for="item of topic.list">
       <h2 class="item-title">
-        <router-link :to="'/a/' + item.objectId "><h1>{{ item.title }}</h1></router-link>
+        <router-link :to="'/a/' + item.objectId ">
+          <h1>{{ item.title }}</h1>
+        </router-link>
       </h2>
-          <div class="author-info">
-              <!--<div class="author-name">{{ item.authname }}</div>-->
-              <span class="auth-name">{{ item.authname }}</span>
-              <span class="bull">·</span>
-              <time class="time">{{item.createdAt | timeAgo}}</time>
-          </div>
+      <div class="author-info">
+        <span class="auth-name">{{ item.authname }}</span>
+        <span class="bull">·</span>
+        <time class="time">{{item.createdAt | timeAgo}}</time>
+      </div>
       <div class="item-content">
         <span class="RichText" v-text="cutStr(item.content)"></span>
         <router-link class="readmore" :to="'/a/' + item.objectId ">阅读全文</router-link>
       </div>
-
     </div>
     <div class="more-item">
       <a v-if="topic.haveNext" @click="loadMore" href="javascript:;">more</a>
@@ -24,7 +24,7 @@
 </template>
 <script>
   export default {
-    name: 'item-list',
+    name: 'itemList',
     props: ['topic'],
     methods: {
       loadMore() {
@@ -38,24 +38,27 @@
       }
     }
   }
+
 </script>
 <style scoped>
   .myposts {
-    width: inherit;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    box-sizing: border-box; 
+    box-sizing: border-box;
     /*animation: slideContent .3s cubic-bezier(0.0,0.0,0.2,1);*/
     /*初次加载向上滑动特效*/
   }
-  h1 {
+  
+ h1 {
     color: #333;
     font-size: 22px;
     line-height: 1.5;
     font-weight: 400;
   }
-  .item {
+  
+.item {
     box-sizing: border-box;
     text-align: left;
     max-width: 730px;
@@ -63,29 +66,33 @@
     padding: 20px 24px;
     border-radius: 2px;
     /*box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.12),0px 2px 2px 0px rgba(0,0,0,0.24);*/
-    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.14);
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
     margin-top: 10px;
     background-color: #ffffff;
   }
-  .item-title {
+  
+ .item-title {
     font-size: 20px;
     font-weight: 400;
     line-height: 1.6;
     color: #333;
   }
-  .item-title a {
+  
+.item-title a {
     color: inherit;
   }
-
-  .author-info {
+  
+ .author-info {
     margin-bottom: 4px;
   }
-  .author-name {
+  
+.author-name {
     font-size: 15px;
     font-weight: 600;
     line-height: 1.1;
   }
-  .author-badge {
+  
+.author-badge {
     margin-top: 6px;
     overflow: hidden;
     font-size: 14px;
@@ -93,18 +100,21 @@
     text-overflow: ellipsis;
     white-space: nowrap;
   }
-  .item-content {
+  
+.item-content {
     overflow: hidden;
     font-size: 15px;
     line-height: 27px;
   }
-  .RichText {
+.RichText {
     color: #404040;
   }
-  .readmore {
+  
+ .readmore {
     color: #8590a6;
   }
-  .more-item {
+  
+.more-item {
     font-size: 14px;
     color: #9e9e9e;
   }

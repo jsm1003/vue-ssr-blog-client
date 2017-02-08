@@ -117,7 +117,8 @@ body {
     -webkit-font-smoothing: subpixel-antialiased;
 }
 a {
-    /*color: #666;*/
+    color: #666;
+    /*颜色待定*/
     text-decoration: none;
     outline: 0;
 }

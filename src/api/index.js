@@ -1,17 +1,14 @@
 import axios from 'axios'
 import store from '../store'
-//axios.defaults.baseURL = 'http://localhost:3000/api'
-//axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
+
 const defaults = {
     baseURL: 'http://localhost:3000/api',
    // timeout: 3000,
     withCredentials: true,
     //上面那一行应该是因为跨域，所以必须添加，生产环境下应该删除
 }
-//console.log(axios.defaults)
-//即使console在前面仍然能够显示合并后的配置项，说明，js自动把下面这条语句提升了，类似变量提升
-Object.assign(axios.defaults, defaults)
 
+Object.assign(axios.defaults, defaults)
 
 axios.interceptors.request.use(config => {
     store.dispatch('gStart')

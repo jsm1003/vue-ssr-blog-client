@@ -128,7 +128,8 @@
   }
   
   .tag {
-    margin-left: 10px;
+    margin-top: 10px;
+    margin-left: 4px;
     display: inline-block;
     position: relative;
     cursor: pointer;
@@ -159,6 +160,7 @@
   
   @media only screen and (min-width: 440px) {
     .tag {
+      margin-left: 10px;
       margin-top: 16px;
       max-width: 257px;
       width: calc(50% - 8px);

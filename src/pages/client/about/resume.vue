@@ -8,7 +8,7 @@
                         <img class="avatar-p" :src="resume.basicInfo.avatar" alt="avatar" />
                     </div>
                     <div class="info">
-                        <div>
+                        <div class="info-name">
                             <span class="authname">{{resume.basicInfo.name}}</span>
                             <span class="sign">{{resume.basicInfo.description}}</span>
                         </div>
@@ -190,14 +190,16 @@
         position: relative;
         z-index: -1;
     }
-    
     .info {
         margin-left: 144px;
         display: flex;
+        justify-content: space-between;
     }
-    
+        .info-name {
+        display: flex;
+        flex-direction: column;
+    }
     .authname {
-        display: inline-block;
         font-weight: 500;
         font-size: 30px;
         line-height: 1em;
@@ -260,7 +262,7 @@
         font-size: 14px;
         line-height: 26px;
         height: 26px;
-        width: 740px;
+        /*width: 740px;*/
         font-weight: 400;
         /*这里的宽度*/
         text-overflow: ellipsis;

@@ -1,11 +1,20 @@
+const path = require('path')
 const webpack = require('webpack')
 const HTMLPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const SWPrecachePlugin = require('sw-precache-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 const entries = require('./entries')
 
 var plugins = [
+  new CopyWebpackPlugin([{//让搜索引擎爬虫爬到
+    from: 'src/assets/robots.txt',
+    to: path.join(__dirname, '../dist')
+  }, {
+    from: 'src/assets/sitemap_location.xml',
+    to: path.join(__dirname, '../dist')
+  }]),
   new ExtractTextPlugin('static/css/[name].[hash:7].css'),
   //就可以将你的样式提取到单独的css文件里
   // this is needed in webpack 2 for minifying CSS
@@ -46,7 +55,6 @@ Object.keys(entries).forEach(function (entry) {
     filename: `${entry}.html`,
     template: `src/template/${entry}.html`,
     inject: true,
-    //下面这些东西是什么？先不加呢
     // minify: {
     //   removeComments: true,//删除注释
     //   collapseWhitespace: true,
@@ -56,7 +64,7 @@ Object.keys(entries).forEach(function (entry) {
 })
 
 module.exports = {
-   // devtool:,//原来是false
+  // devtool:,//原来是false
   module: {
     rules: [{
       test: /\.(jpg|png|gif|eot|svg|ttf|woff|woff2)$/,

@@ -66,6 +66,8 @@ app.use(compression({ threshold: 0 }))
 app.use(favicon('./src/assets/img/logo-48.png'))
 //app.use('/service-worker.js', serve('./dist/service-worker.js'))离线缓存？先不用了
 app.use('/manifest.json', serve('./manifest.json'))
+// 设置 express 根目录 为了找到robots
+app.use(express.static(path.join(__dirname, 'dist')))
 app.use('/server', serve('./dist/server'))
 app.use('/static', serve('./dist/static'))
 

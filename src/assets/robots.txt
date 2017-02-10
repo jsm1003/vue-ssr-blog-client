@@ -1,3 +1,6 @@
 Sitemap: http://josephine.leanapp.cn/sitemap_location.xml
+
 Allow: /
 Disallow: /admin
+Disallow: /signin
+Disallow: /signup

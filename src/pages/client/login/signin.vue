@@ -20,7 +20,7 @@ export default {
                 var {data: {code,msg}} = await api.post('/user/login', {
                     username: this.username,
                     password: this.password
-                })//目前是明文传输，后续会稍微做一点加密
+                })
                 if(code === 200) {
                     console.log(msg)
                         localStorage.setItem('testIsLogin', 'yes')

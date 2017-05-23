@@ -51,13 +51,12 @@ import api from '~src/api'
 
             },
             loadMore () {
-                this.page ++ //这里用++比较好？
+                this.page ++
                 this.fetchInitialData()
             }
         },
          mounted () {
              this.fetchInitialData()
-            //var {data} = await api.get('/drafts', )
         }
     }
 </script>

@@ -33,22 +33,7 @@ export default {
   beforeMount () {
     //再发起请求之前可以先加载loading画面，然后就不需要beforeDestroy这个钩子了
      fetchArticleData(this.$store)
-  },
-  // beforeDestroy () {
-  //   //符合逻辑了，
-  //   //如果销毁vuex的状态，会在数据请求到之前仍然显示之前的数据,我先这么认为,这样是可以的只是加了标题
-  //   //但是我感觉这里用css比较好 G+用的是css
-  //   this.$store.dispatch('clearArticle')
-  // },
-  // watch: {
-  //   '$route' () {
-  //    // console.log('route改变')
-  //     //fetchArticleData(this.$store)
-  //     }
-      //这里的watch是做上一篇下一篇的时候用到
-      //但是他切换父级route的时候也改变，就不对了
-    
- // }
+  }
 }
 </script>
 <style scoped>
